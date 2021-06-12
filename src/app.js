@@ -66,10 +66,13 @@ class App extends React.Component{
     }
 
     handleInputSubmit(){
-        if(this.state.inputVal == ""){
+        let rgx = /[^a-zA-Z0-9 -]/;
+        let input = this.state.inputVal.replace(rgx, "");
+
+        if(input == ""){
             this.alert("Try looking up something!");
         }else{
-            fetch("http://localhost:3000/api/geo/" + this.state.inputVal)
+            fetch("http://localhost:3000/api/geo/" + input)
             .then(res => res.json())
             .then(res => this.handleLocationOptions(res))
             .catch(err => console.log("This is the error: " + err));
@@ -152,7 +155,7 @@ class MyButton extends React.Component{
         let loc = buttonLocation(this.props.json)
         return(
             <button onClick={() => {this.props.onClick(this.props.json, loc)}}>
-                {loc} Lat: {this.props.json.lat} Lon: {this.props.json.lon}
+                {this.props.json.name} {loc} Lat: {this.props.json.lat} Lon: {this.props.json.lon}
                 </button>
         )
     }

@@ -89,10 +89,13 @@ var App = function (_React$Component) {
         value: function handleInputSubmit() {
             var _this3 = this;
 
-            if (this.state.inputVal == "") {
+            var rgx = /[^a-zA-Z0-9 -]/;
+            var input = this.state.inputVal.replace(rgx, "");
+
+            if (input == "") {
                 this.alert("Try looking up something!");
             } else {
-                fetch("http://localhost:3000/api/geo/" + this.state.inputVal).then(function (res) {
+                fetch("http://localhost:3000/api/geo/" + input).then(function (res) {
                     return res.json();
                 }).then(function (res) {
                     return _this3.handleLocationOptions(res);
@@ -233,6 +236,8 @@ var MyButton = function (_React$Component2) {
                 { onClick: function onClick() {
                         _this7.props.onClick(_this7.props.json, loc);
                     } },
+                this.props.json.name,
+                " ",
                 loc,
                 " Lat: ",
                 this.props.json.lat,
