@@ -1,0 +1,16 @@
+{
+	"name": "weather-app-test",
+	"version": "0.1.0",
+	"dependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-react-app": "^3.1.2",
+		"body-parser": "^1.15.2",
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"node-fetch": "^2.6.1"
+	},
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+	}
+}
