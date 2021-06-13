@@ -20,10 +20,11 @@ app.get("/info", (req, res) => {
 })
 
 app.get("/api/geo/:input", (req, res) => {
-  console.log("inside get");
   fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + req.params.input + '&limit=5&appid=' + myKey)
   .then(response => response.json())
-  .then(json => res.send(json));
+  .then(json => {
+    console.log("inside geo: " + json.cod);
+    res.send(json)});
 })
 
 app.get("/api/air/:lat/:lon", (req, res) => {

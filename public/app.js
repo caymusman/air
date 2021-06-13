@@ -98,15 +98,21 @@ var App = function (_React$Component) {
                 fetch("http://localhost:3000/api/geo/" + input).then(function (res) {
                     return res.json();
                 }).then(function (res) {
-                    return _this3.handleLocationOptions(res);
+                    if (res.cod == 400) {
+                        _this3.handleClear();
+                        _this3.alert("Sorry, that value is not available!");
+                    } else {
+                        _this3.handleLocationOptions(res);
+                    }
                 }).catch(function (err) {
-                    return console.log("This is the error: " + err);
+                    console.log("This is the input error: " + err);
                 });
             }
         }
     }, {
         key: "handleLocationOptions",
         value: function handleLocationOptions(json) {
+            console.log(json);
             if (json.length == 0) {
                 this.handleClear();
                 this.alert("Input not recognized.");
@@ -135,7 +141,7 @@ var App = function (_React$Component) {
             }).then(function (res) {
                 return _this4.setState({ cityData: res });
             }).catch(function (err) {
-                return console.log("This is the error: " + err);
+                return console.log("This is the data error: " + err);
             });
         }
     }, {
@@ -151,13 +157,17 @@ var App = function (_React$Component) {
             }
             return React.createElement(
                 "div",
-                null,
-                React.createElement("input", { type: "text", onChange: this.handleInputChange, value: this.state.inputVal }),
-                React.createElement("input", { type: "button", onClick: this.handleInputSubmit, value: "Submit" }),
+                { id: "main" },
+                React.createElement("input", { id: "input", type: "text", onChange: this.handleInputChange, value: this.state.inputVal }),
                 React.createElement(
-                    "button",
-                    { id: "clear", onClick: this.handleClear },
-                    "Clear"
+                    "div",
+                    { id: "inputButtons" },
+                    React.createElement("input", { id: "submit", type: "button", onClick: this.handleInputSubmit, value: "Submit" }),
+                    React.createElement(
+                        "button",
+                        { id: "clear", onClick: this.handleClear },
+                        "Clear"
+                    )
                 ),
                 React.createElement(
                     "p",
@@ -170,34 +180,43 @@ var App = function (_React$Component) {
                     buttons
                 ),
                 React.createElement(
-                    "p",
-                    null,
-                    this.state.cityData ? this.state.cityName : ""
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    this.state.cityData ? this.state.cityData.list[0].dt : ""
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    this.state.cityData ? this.state.cityData.list[0].main.aqi : ""
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    this.state.cityData ? this.state.cityData.list[0].components.co : ""
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    this.state.cityData ? this.state.cityData.list[0].components.no : ""
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    this.state.cityData ? this.state.cityData.list[0].components.no2 : ""
+                    "div",
+                    { id: "data" },
+                    React.createElement(
+                        "p",
+                        null,
+                        this.state.cityData ? this.state.cityName : ""
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        "DT: ",
+                        this.state.cityData ? this.state.cityData.list[0].dt : ""
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        "AQI: ",
+                        this.state.cityData ? this.state.cityData.list[0].main.aqi : ""
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        "C02: ",
+                        this.state.cityData ? this.state.cityData.list[0].components.co : ""
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        "N0: ",
+                        this.state.cityData ? this.state.cityData.list[0].components.no : ""
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        "N02: ",
+                        this.state.cityData ? this.state.cityData.list[0].components.no2 : ""
+                    )
                 )
             );
         }
@@ -233,7 +252,7 @@ var MyButton = function (_React$Component2) {
             var loc = buttonLocation(this.props.json);
             return React.createElement(
                 "button",
-                { onClick: function onClick() {
+                { className: "buttonClass", onClick: function onClick() {
                         _this7.props.onClick(_this7.props.json, loc);
                     } },
                 this.props.json.name,

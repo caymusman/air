@@ -2,3 +2,38 @@ body{
     background-color: black;
     color: white;
 }
+
+#main{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    #input{
+        height: 7%;
+        width: 30%;
+    }
+
+    #inputbuttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    
+    #cityButtons{
+        color: green;
+    }
+}
+
+.buttonClass{
+    :hover{
+        cursor: pointer;
+    }
+    
+    color: pink;
+    background-color: black;
+}

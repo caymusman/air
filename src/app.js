@@ -74,12 +74,22 @@ class App extends React.Component{
         }else{
             fetch("http://localhost:3000/api/geo/" + input)
             .then(res => res.json())
-            .then(res => this.handleLocationOptions(res))
-            .catch(err => console.log("This is the error: " + err));
+            .then(res => {
+                if(res.cod == 400){
+                    this.handleClear();
+                    this.alert("Sorry, that value is not available!");
+                }else{
+                    this.handleLocationOptions(res);
+                }
+            })
+            .catch(err => {
+                console.log("This is the input error: " + err);
+            });
         }
     }
 
     handleLocationOptions(json){
+        console.log(json);
         if(json.length == 0){
             this.handleClear();
             this.alert("Input not recognized.");
@@ -104,7 +114,7 @@ class App extends React.Component{
         fetch("/api/air/" + json.lat + "/" + json.lon)
         .then(res => res.json())
         .then(res => this.setState({cityData: res}))
-        .catch(err => console.log("This is the error: " + err));
+        .catch(err => console.log("This is the data error: " + err));
     }
 
     render(){
@@ -115,21 +125,25 @@ class App extends React.Component{
             })
         }
         return(
-            <div>
-                <input type="text" onChange={this.handleInputChange} value={this.state.inputVal}/>
-                <input type="button" onClick={this.handleInputSubmit} value="Submit"></input>
-                <button id="clear" onClick={this.handleClear}>Clear</button>
+            <div id="main">
+                <input id="input" type="text" onChange={this.handleInputChange} value={this.state.inputVal}/>
+                <div id="inputButtons">
+                    <input id="submit" type="button" onClick={this.handleInputSubmit} value="Submit"></input>
+                    <button id="clear" onClick={this.handleClear}>Clear</button>
+                </div>
                 <p id="alert">{this.state.isAlerted ? this.state.alertText : ""}</p>
                 <div id="cityButtons">
                     {buttons}
                 </div>
 
-                <p>{this.state.cityData ? this.state.cityName : ""}</p>
-                <p>{this.state.cityData ? this.state.cityData.list[0].dt : ""}</p>
-                <p>{this.state.cityData ? this.state.cityData.list[0].main.aqi : ""}</p>
-                <p>{this.state.cityData ? this.state.cityData.list[0].components.co : ""}</p>
-                <p>{this.state.cityData ? this.state.cityData.list[0].components.no : ""}</p>
-                <p>{this.state.cityData ? this.state.cityData.list[0].components.no2 : ""}</p>
+                <div id="data">
+                    <p>{this.state.cityData ? this.state.cityName : ""}</p>
+                    <p>DT: {this.state.cityData ? this.state.cityData.list[0].dt : ""}</p>
+                    <p>AQI: {this.state.cityData ? this.state.cityData.list[0].main.aqi : ""}</p>
+                    <p>C02: {this.state.cityData ? this.state.cityData.list[0].components.co : ""}</p>
+                    <p>N0: {this.state.cityData ? this.state.cityData.list[0].components.no : ""}</p>
+                    <p>N02: {this.state.cityData ? this.state.cityData.list[0].components.no2 : ""}</p>
+                </div>
             </div>
         )
     }
@@ -154,7 +168,7 @@ class MyButton extends React.Component{
     render(){
         let loc = buttonLocation(this.props.json)
         return(
-            <button onClick={() => {this.props.onClick(this.props.json, loc)}}>
+            <button className="buttonClass" onClick={() => {this.props.onClick(this.props.json, loc)}}>
                 {this.props.json.name} {loc} Lat: {this.props.json.lat} Lon: {this.props.json.lon}
                 </button>
         )
