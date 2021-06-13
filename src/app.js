@@ -68,6 +68,7 @@ class App extends React.Component{
     handleInputSubmit(){
         let rgx = /[^a-zA-Z0-9 -]/;
         let input = this.state.inputVal.replace(rgx, "");
+        this.handleClear();
 
         if(input == ""){
             this.alert("Try looking up something!");
@@ -136,14 +137,45 @@ class App extends React.Component{
                     {buttons}
                 </div>
 
-                <div id="data">
-                    <p>{this.state.cityData ? this.state.cityName : ""}</p>
-                    <p>DT: {this.state.cityData ? this.state.cityData.list[0].dt : ""}</p>
-                    <p>AQI: {this.state.cityData ? this.state.cityData.list[0].main.aqi : ""}</p>
-                    <p>C02: {this.state.cityData ? this.state.cityData.list[0].components.co : ""}</p>
-                    <p>N0: {this.state.cityData ? this.state.cityData.list[0].components.no : ""}</p>
-                    <p>N02: {this.state.cityData ? this.state.cityData.list[0].components.no2 : ""}</p>
+                <DataArea cityData={this.state.cityData} name={this.state.cityName}/>
+            </div>
+        )
+    }
+}
+
+class DataArea extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    render(){
+        let date;
+        if(this.props.cityData){
+            date = new Date(Number(this.props.cityData.list[0].dt + "000")).toUTCString();
+        }
+        return(
+            <div id="dataOuter">
+                {this.props.cityData ? 
+                <div id="dataInner">
+                    <div id="dataHeader">
+                        <h3>Here's the air pollution index in {this.props.name}<br></br>
+                        <p>(The last batch was made: {date})</p>
+                        </h3>
+                        
+                    </div>
+                    <p>AQI: {this.props.cityData.list[0].main.aqi}</p>
+                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Carbon_monoxide">CO:</a> {this.props.cityData.list[0].components.co}</p>
+                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitric_oxide">NO:</a> {this.props.cityData.list[0].components.no}</p>
+                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitrogen_dioxide">N0<sub>2</sub>:</a> {this.props.cityData.list[0].components.no2}</p>
+                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ozone">O<sub>3</sub>:</a> {this.props.cityData.list[0].components.o3}</p>
+                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Sulfur_dioxide">SO<sub>2</sub>:</a> {this.props.cityData.list[0].components.so2}</p>
+                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates">PM<sub>2.5</sub>:</a> {this.props.cityData.list[0].components.pm2_5}</p>
+                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter">PM<sub>10</sub>:</a> {this.props.cityData.list[0].components.pm10}</p>
+                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ammonia">NH<sub>3</sub>:</a> {this.props.cityData.list[0].components.nh3}</p>
                 </div>
+                :
+                null
+                }
             </div>
         )
     }
@@ -169,8 +201,7 @@ class MyButton extends React.Component{
         let loc = buttonLocation(this.props.json)
         return(
             <button className="buttonClass" onClick={() => {this.props.onClick(this.props.json, loc)}}>
-                {this.props.json.name} {loc} Lat: {this.props.json.lat} Lon: {this.props.json.lon}
-                </button>
+                {this.props.json.name} {loc}</button>
         )
     }
 }

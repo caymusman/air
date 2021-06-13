@@ -91,6 +91,7 @@ var App = function (_React$Component) {
 
             var rgx = /[^a-zA-Z0-9 -]/;
             var input = this.state.inputVal.replace(rgx, "");
+            this.handleClear();
 
             if (input == "") {
                 this.alert("Try looking up something!");
@@ -179,45 +180,7 @@ var App = function (_React$Component) {
                     { id: "cityButtons" },
                     buttons
                 ),
-                React.createElement(
-                    "div",
-                    { id: "data" },
-                    React.createElement(
-                        "p",
-                        null,
-                        this.state.cityData ? this.state.cityName : ""
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        "DT: ",
-                        this.state.cityData ? this.state.cityData.list[0].dt : ""
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        "AQI: ",
-                        this.state.cityData ? this.state.cityData.list[0].main.aqi : ""
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        "C02: ",
-                        this.state.cityData ? this.state.cityData.list[0].components.co : ""
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        "N0: ",
-                        this.state.cityData ? this.state.cityData.list[0].components.no : ""
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        "N02: ",
-                        this.state.cityData ? this.state.cityData.list[0].components.no2 : ""
-                    )
-                )
+                React.createElement(DataArea, { cityData: this.state.cityData, name: this.state.cityName })
             );
         }
     }]);
@@ -225,8 +188,186 @@ var App = function (_React$Component) {
     return App;
 }(React.Component);
 
-var MyButton = function (_React$Component2) {
-    _inherits(MyButton, _React$Component2);
+var DataArea = function (_React$Component2) {
+    _inherits(DataArea, _React$Component2);
+
+    function DataArea(props) {
+        _classCallCheck(this, DataArea);
+
+        return _possibleConstructorReturn(this, (DataArea.__proto__ || Object.getPrototypeOf(DataArea)).call(this, props));
+    }
+
+    _createClass(DataArea, [{
+        key: "render",
+        value: function render() {
+            var date = void 0;
+            if (this.props.cityData) {
+                date = new Date(Number(this.props.cityData.list[0].dt + "000")).toUTCString();
+            }
+            return React.createElement(
+                "div",
+                { id: "dataOuter" },
+                this.props.cityData ? React.createElement(
+                    "div",
+                    { id: "dataInner" },
+                    React.createElement(
+                        "div",
+                        { id: "dataHeader" },
+                        React.createElement(
+                            "h3",
+                            null,
+                            "Here's the air pollution index in ",
+                            this.props.name,
+                            React.createElement("br", null),
+                            React.createElement(
+                                "p",
+                                null,
+                                "(The last batch was made: ",
+                                date,
+                                ")"
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        "AQI: ",
+                        this.props.cityData.list[0].main.aqi
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Carbon_monoxide" },
+                            "CO:"
+                        ),
+                        " ",
+                        this.props.cityData.list[0].components.co
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitric_oxide" },
+                            "NO:"
+                        ),
+                        " ",
+                        this.props.cityData.list[0].components.no
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitrogen_dioxide" },
+                            "N0",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "2"
+                            ),
+                            ":"
+                        ),
+                        " ",
+                        this.props.cityData.list[0].components.no2
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Ozone" },
+                            "O",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "3"
+                            ),
+                            ":"
+                        ),
+                        " ",
+                        this.props.cityData.list[0].components.o3
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Sulfur_dioxide" },
+                            "SO",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "2"
+                            ),
+                            ":"
+                        ),
+                        " ",
+                        this.props.cityData.list[0].components.so2
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates" },
+                            "PM",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "2.5"
+                            ),
+                            ":"
+                        ),
+                        " ",
+                        this.props.cityData.list[0].components.pm2_5
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter" },
+                            "PM",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "10"
+                            ),
+                            ":"
+                        ),
+                        " ",
+                        this.props.cityData.list[0].components.pm10
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Ammonia" },
+                            "NH",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "3"
+                            ),
+                            ":"
+                        ),
+                        " ",
+                        this.props.cityData.list[0].components.nh3
+                    )
+                ) : null
+            );
+        }
+    }]);
+
+    return DataArea;
+}(React.Component);
+
+var MyButton = function (_React$Component3) {
+    _inherits(MyButton, _React$Component3);
 
     function MyButton(props) {
         _classCallCheck(this, MyButton);
@@ -247,21 +388,17 @@ var MyButton = function (_React$Component2) {
     }, {
         key: "render",
         value: function render() {
-            var _this7 = this;
+            var _this8 = this;
 
             var loc = buttonLocation(this.props.json);
             return React.createElement(
                 "button",
                 { className: "buttonClass", onClick: function onClick() {
-                        _this7.props.onClick(_this7.props.json, loc);
+                        _this8.props.onClick(_this8.props.json, loc);
                     } },
                 this.props.json.name,
                 " ",
-                loc,
-                " Lat: ",
-                this.props.json.lat,
-                " Lon: ",
-                this.props.json.lon
+                loc
             );
         }
     }]);

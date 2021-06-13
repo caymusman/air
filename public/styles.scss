@@ -26,6 +26,15 @@ body{
     
     #cityButtons{
         color: green;
+
+        :hover{
+            cursor: pointer;
+        }
+    }
+
+    #dataOuter{
+        width: 50%;
+        height: 40%;
     }
 }
 

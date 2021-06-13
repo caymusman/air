@@ -10,20 +10,10 @@ app.get("/", (req, res) => {
   res.sendFile(process.cwd() + "/views/index.html");
 })
 
-app.get("/haha", (req, res) => {
-  res.json({haha: "youtried"});
-})
-
-app.get("/info", (req, res) => {
-  console.log("Post made");
-  res.send({"info": "DATABLAHBLAH"});
-})
-
 app.get("/api/geo/:input", (req, res) => {
   fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + req.params.input + '&limit=5&appid=' + myKey)
   .then(response => response.json())
   .then(json => {
-    console.log("inside geo: " + json.cod);
     res.send(json)});
 })
 

@@ -46,6 +46,15 @@ body {
   color: green;
 }
 
+#main #cityButtons :hover {
+  cursor: pointer;
+}
+
+#main #dataOuter {
+  width: 50%;
+  height: 40%;
+}
+
 .buttonClass {
   color: pink;
   background-color: black;
