@@ -137,6 +137,14 @@ var App = function (_React$Component) {
         value: function getData(json) {
             var _this4 = this;
 
+            fetch("/api/time/" + json.lat + "/" + json.lon).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                return _this4.setState({ date: res.formatted + res.abbreviation });
+            }).catch(function (err) {
+                return console.log("The client time error was: " + err);
+            });
+
             fetch("/api/air/" + json.lat + "/" + json.lon).then(function (res) {
                 return res.json();
             }).then(function (res) {
@@ -180,7 +188,11 @@ var App = function (_React$Component) {
                     { id: "cityButtons" },
                     buttons
                 ),
-                React.createElement(DataArea, { cityData: this.state.cityData, name: this.state.cityName })
+                React.createElement(
+                    "div",
+                    { id: "dataWrapper" },
+                    this.state.cityData ? React.createElement(DataArea, { cityData: this.state.cityData, name: this.state.cityName, date: this.state.date }) : null
+                )
             );
         }
     }]);
@@ -200,165 +212,151 @@ var DataArea = function (_React$Component2) {
     _createClass(DataArea, [{
         key: "render",
         value: function render() {
-            var date = void 0;
-            if (this.props.cityData) {
-                date = new Date(Number(this.props.cityData.list[0].dt + "000")).toUTCString();
-            }
             return React.createElement(
                 "div",
                 { id: "dataOuter" },
-                this.props.cityData ? React.createElement(
+                React.createElement(
                     "div",
-                    { id: "dataInner" },
+                    { id: "dataHeader" },
                     React.createElement(
-                        "div",
-                        { id: "dataHeader" },
-                        React.createElement(
-                            "h3",
-                            null,
-                            "Here's the air pollution index in ",
-                            this.props.name,
-                            React.createElement("br", null),
-                            React.createElement(
-                                "p",
-                                null,
-                                "(The last batch was made: ",
-                                date,
-                                ")"
-                            )
-                        )
-                    ),
-                    React.createElement(
-                        "p",
+                        "h3",
                         null,
-                        "AQI: ",
-                        this.props.cityData.list[0].main.aqi
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        React.createElement(
-                            "a",
-                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Carbon_monoxide" },
-                            "CO:"
-                        ),
-                        " ",
-                        this.props.cityData.list[0].components.co
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        React.createElement(
-                            "a",
-                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitric_oxide" },
-                            "NO:"
-                        ),
-                        " ",
-                        this.props.cityData.list[0].components.no
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        React.createElement(
-                            "a",
-                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitrogen_dioxide" },
-                            "N0",
-                            React.createElement(
-                                "sub",
-                                null,
-                                "2"
-                            ),
-                            ":"
-                        ),
-                        " ",
-                        this.props.cityData.list[0].components.no2
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        React.createElement(
-                            "a",
-                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Ozone" },
-                            "O",
-                            React.createElement(
-                                "sub",
-                                null,
-                                "3"
-                            ),
-                            ":"
-                        ),
-                        " ",
-                        this.props.cityData.list[0].components.o3
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        React.createElement(
-                            "a",
-                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Sulfur_dioxide" },
-                            "SO",
-                            React.createElement(
-                                "sub",
-                                null,
-                                "2"
-                            ),
-                            ":"
-                        ),
-                        " ",
-                        this.props.cityData.list[0].components.so2
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        React.createElement(
-                            "a",
-                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates" },
-                            "PM",
-                            React.createElement(
-                                "sub",
-                                null,
-                                "2.5"
-                            ),
-                            ":"
-                        ),
-                        " ",
-                        this.props.cityData.list[0].components.pm2_5
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        React.createElement(
-                            "a",
-                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter" },
-                            "PM",
-                            React.createElement(
-                                "sub",
-                                null,
-                                "10"
-                            ),
-                            ":"
-                        ),
-                        " ",
-                        this.props.cityData.list[0].components.pm10
-                    ),
-                    React.createElement(
-                        "p",
-                        null,
-                        React.createElement(
-                            "a",
-                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Ammonia" },
-                            "NH",
-                            React.createElement(
-                                "sub",
-                                null,
-                                "3"
-                            ),
-                            ":"
-                        ),
-                        " ",
-                        this.props.cityData.list[0].components.nh3
+                        "Here in ",
+                        this.props.name,
+                        " it is ",
+                        this.props.date
                     )
-                ) : null
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "AQI: ",
+                    this.props.cityData.list[0].main.aqi
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "a",
+                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Carbon_monoxide" },
+                        "CO:"
+                    ),
+                    " ",
+                    this.props.cityData.list[0].components.co
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "a",
+                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitric_oxide" },
+                        "NO:"
+                    ),
+                    " ",
+                    this.props.cityData.list[0].components.no
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "a",
+                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitrogen_dioxide" },
+                        "N0",
+                        React.createElement(
+                            "sub",
+                            null,
+                            "2"
+                        ),
+                        ":"
+                    ),
+                    " ",
+                    this.props.cityData.list[0].components.no2
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "a",
+                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Ozone" },
+                        "O",
+                        React.createElement(
+                            "sub",
+                            null,
+                            "3"
+                        ),
+                        ":"
+                    ),
+                    " ",
+                    this.props.cityData.list[0].components.o3
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "a",
+                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Sulfur_dioxide" },
+                        "SO",
+                        React.createElement(
+                            "sub",
+                            null,
+                            "2"
+                        ),
+                        ":"
+                    ),
+                    " ",
+                    this.props.cityData.list[0].components.so2
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "a",
+                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates" },
+                        "PM",
+                        React.createElement(
+                            "sub",
+                            null,
+                            "2.5"
+                        ),
+                        ":"
+                    ),
+                    " ",
+                    this.props.cityData.list[0].components.pm2_5
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "a",
+                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter" },
+                        "PM",
+                        React.createElement(
+                            "sub",
+                            null,
+                            "10"
+                        ),
+                        ":"
+                    ),
+                    " ",
+                    this.props.cityData.list[0].components.pm10
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "a",
+                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Ammonia" },
+                        "NH",
+                        React.createElement(
+                            "sub",
+                            null,
+                            "3"
+                        ),
+                        ":"
+                    ),
+                    " ",
+                    this.props.cityData.list[0].components.nh3
+                )
             );
         }
     }]);

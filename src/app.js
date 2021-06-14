@@ -112,6 +112,12 @@ class App extends React.Component{
     }
 
     getData(json){
+        fetch("/api/time/" + json.lat + "/" + json.lon)
+        .then(res => res.json())
+        .then(res => this.setState({date: res.formatted + res.abbreviation}))
+        .catch(err => console.log("The client time error was: " + err));
+
+
         fetch("/api/air/" + json.lat + "/" + json.lon)
         .then(res => res.json())
         .then(res => this.setState({cityData: res}))
@@ -137,7 +143,11 @@ class App extends React.Component{
                     {buttons}
                 </div>
 
-                <DataArea cityData={this.state.cityData} name={this.state.cityName}/>
+                <div id="dataWrapper">
+                    {this.state.cityData ? 
+                        <DataArea cityData={this.state.cityData} name={this.state.cityName} date={this.state.date}/>
+                        : null}
+                </div>
             </div>
         )
     }
@@ -148,34 +158,23 @@ class DataArea extends React.Component{
         super(props);
     }
 
+    
+
     render(){
-        let date;
-        if(this.props.cityData){
-            date = new Date(Number(this.props.cityData.list[0].dt + "000")).toUTCString();
-        }
         return(
             <div id="dataOuter">
-                {this.props.cityData ? 
-                <div id="dataInner">
-                    <div id="dataHeader">
-                        <h3>Here's the air pollution index in {this.props.name}<br></br>
-                        <p>(The last batch was made: {date})</p>
-                        </h3>
-                        
-                    </div>
-                    <p>AQI: {this.props.cityData.list[0].main.aqi}</p>
-                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Carbon_monoxide">CO:</a> {this.props.cityData.list[0].components.co}</p>
-                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitric_oxide">NO:</a> {this.props.cityData.list[0].components.no}</p>
-                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitrogen_dioxide">N0<sub>2</sub>:</a> {this.props.cityData.list[0].components.no2}</p>
-                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ozone">O<sub>3</sub>:</a> {this.props.cityData.list[0].components.o3}</p>
-                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Sulfur_dioxide">SO<sub>2</sub>:</a> {this.props.cityData.list[0].components.so2}</p>
-                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates">PM<sub>2.5</sub>:</a> {this.props.cityData.list[0].components.pm2_5}</p>
-                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter">PM<sub>10</sub>:</a> {this.props.cityData.list[0].components.pm10}</p>
-                    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ammonia">NH<sub>3</sub>:</a> {this.props.cityData.list[0].components.nh3}</p>
+                <div id="dataHeader">
+                    <h3>Here in {this.props.name} it is {this.props.date}</h3>  
                 </div>
-                :
-                null
-                }
+                <p>AQI: {this.props.cityData.list[0].main.aqi}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Carbon_monoxide">CO:</a> {this.props.cityData.list[0].components.co}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitric_oxide">NO:</a> {this.props.cityData.list[0].components.no}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitrogen_dioxide">N0<sub>2</sub>:</a> {this.props.cityData.list[0].components.no2}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ozone">O<sub>3</sub>:</a> {this.props.cityData.list[0].components.o3}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Sulfur_dioxide">SO<sub>2</sub>:</a> {this.props.cityData.list[0].components.so2}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates">PM<sub>2.5</sub>:</a> {this.props.cityData.list[0].components.pm2_5}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter">PM<sub>10</sub>:</a> {this.props.cityData.list[0].components.pm10}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ammonia">NH<sub>3</sub>:</a> {this.props.cityData.list[0].components.nh3}</p>
             </div>
         )
     }
