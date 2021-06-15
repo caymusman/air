@@ -1,6 +1,6 @@
 body{
-    background-color: black;
-    color: white;
+    background-color: #769bbf;
+    color: #eee;
 }
 
 #main{
@@ -38,11 +38,25 @@ body{
 #dataWrapper{
     width: 80%;
     height: 50%;
+    position: relative;
 
-    img{
+    #imgWrapper{
+        position: absolute;
+        right: 3%;
+        top: 3%;
         width: 5vmax;
         height: 5vmax;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 5vmax;
+        vertical-align: middle;
+
+        img{
+            margin-top: -1.3px;
+            border-radius: 50%;
+        }
     }
+    
     
 
     #dataOuter{
@@ -52,6 +66,23 @@ body{
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
+    }
+
+    #airData{
+        background: #777;
+        display: grid;
+        grid: 1fr 1fr / 1fr 1fr 1fr 1fr;
+        gap: 0px 20px;
+        padding: 0px 10px;
+        border-radius: 5px;
+        filter: drop-shadow(2px 2px 4px #222);
+        p{
+            background-color: #eee;
+            padding: 5px;
+            color: #777;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
     }
 }
 

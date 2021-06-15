@@ -215,9 +215,13 @@ var DataArea = function (_React$Component2) {
 
         var _this6 = _possibleConstructorReturn(this, (DataArea.__proto__ || Object.getPrototypeOf(DataArea)).call(this, props));
 
-        _this6.color = ['#008e00', '#E7E772', '#F1B97E', '#D95858', '#51255F'];
+        _this6.color = ['#76bf76', '#E7E772', '#F1B97E', '#D95858', '#9b76bf'];
         return _this6;
     }
+
+    //
+    //#5da35d
+
 
     _createClass(DataArea, [{
         key: "render",
@@ -226,7 +230,7 @@ var DataArea = function (_React$Component2) {
             var splitForm = this.props.date.form.split(" ");
             return React.createElement(
                 "div",
-                { id: "dataOuter", style: { backgroundColor: this.color[aqi - 1] } },
+                { id: "dataOuter" },
                 React.createElement(
                     "div",
                     { id: "dataHeader" },
@@ -241,6 +245,12 @@ var DataArea = function (_React$Component2) {
                         splitForm[1] + " " + this.props.date.abbr,
                         " on ",
                         splitForm[0]
+                    ),
+                    React.createElement(
+                        "sub",
+                        null,
+                        "Last batched on ",
+                        new Date(Number(this.props.cityData.list[0].dt + "000")).toUTCString()
                     )
                 ),
                 React.createElement(
@@ -249,7 +259,11 @@ var DataArea = function (_React$Component2) {
                     "AQI: ",
                     aqi
                 ),
-                React.createElement("img", { src: "fa-icons/fa_" + aqi + ".svg", alt: "Face representing AQI of " + aqi }),
+                React.createElement(
+                    "div",
+                    { id: "imgWrapper", style: { backgroundColor: this.color[aqi - 1] } },
+                    React.createElement("img", { src: "fa-icons/fa_" + aqi + ".svg", alt: "Face representing AQI of " + aqi })
+                ),
                 React.createElement(AirData, { list: this.props.cityData.list[0].components })
             );
         }

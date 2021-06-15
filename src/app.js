@@ -164,26 +164,31 @@ class DataArea extends React.Component{
     constructor(props){
         super(props);
 
-        this.color=['#008e00', '#E7E772', '#F1B97E', '#D95858', '#51255F'];
+        this.color=['#76bf76', '#E7E772', '#F1B97E', '#D95858', '#9b76bf'];
     }
 
+    //
+    //#5da35d
     
 
     render(){
         let aqi = this.props.cityData.list[0].main.aqi;
         let splitForm = this.props.date.form.split(" ");
         return(
-            <div id="dataOuter" style={{backgroundColor: this.color[aqi - 1]}}>
+            <div id="dataOuter">
                 <div id="dataHeader">
                     <h3>{this.props.name}</h3>  
                     <p>{splitForm[1] + " " + this.props.date.abbr} on {splitForm[0]}</p>
+                    <sub>Last batched on {new Date(Number(this.props.cityData.list[0].dt + "000")).toUTCString()}</sub>
                 </div>
                 <p>AQI: {aqi}</p>
-                <img src={"fa-icons/fa_" + aqi + ".svg"} alt={"Face representing AQI of " + aqi}></img>
-                {/*
-                    Icons provided by FontAwesome.
-                     License: https://fontawesome.com/license
-                */}
+                <div id="imgWrapper" style={{backgroundColor: this.color[aqi - 1]}}>
+                    <img  src={"fa-icons/fa_" + aqi + ".svg"} alt={"Face representing AQI of " + aqi}></img>
+                    {/*
+                        Icons provided by FontAwesome.
+                        License: https://fontawesome.com/license
+                     */}
+                </div>
                 <AirData list={this.props.cityData.list[0].components}/>
             </div>
         )

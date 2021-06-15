@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 
 app.get("/api/geo/:input", (req, res) => {
   //required because node-fetch doesn't support Unicode fetch.
-  let url = new URL('http://api.openweathermap.org/geo/1.0/direct?q=' + req.params.input + '&limit=5&appid=' + myKey)
+  let url = new URL('http://api.openweathermap.org/geo/1.0/direct?q=' + sanitize(req.params.input) + '&limit=5&appid=' + myKey)
   fetch(url)
   .then(response => response.json())
   .then(json => res.send(json));
@@ -47,3 +47,9 @@ let port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log('Listening on port ' + port);
 });
+
+
+function sanitize(input){
+  let regex = /^([a-zA-Z\u0080-\u024F]+(?:\. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
+  return regex.test(input) ? input : "error";
+}
