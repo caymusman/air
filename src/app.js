@@ -66,14 +66,21 @@ class App extends React.Component{
     }
 
     handleInputSubmit(){
-        let rgx = /[^a-zA-Z0-9 -]/;
-        let input = this.state.inputVal.replace(rgx, "");
+        let rgx = /^([a-zA-Z\u0080-\u024F]+(?:\. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
+        let input;
+        if(rgx.test(this.state.inputVal)){
+            input = this.state.inputVal;
+        }else{
+            this.handleClear();
+            this.alert("We cannot support that input")
+            return;
+        }
         this.handleClear();
 
         if(input == ""){
             this.alert("Try looking up something!");
         }else{
-            fetch("http://localhost:3000/api/geo/" + input)
+            fetch("http://localhost:3000/api/geo/" + input, {headers: {'Content-Type': 'text/html; charset=utf-8'}})
             .then(res => res.json())
             .then(res => {
                 if(res.cod == 400){
