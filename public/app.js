@@ -140,7 +140,7 @@ var App = function (_React$Component) {
             fetch("/api/time/" + json.lat + "/" + json.lon).then(function (res) {
                 return res.json();
             }).then(function (res) {
-                return _this4.setState({ date: res.formatted + res.abbreviation });
+                return _this4.setState({ date: { form: res.formatted, abbr: res.abbreviation } });
             }).catch(function (err) {
                 return console.log("The client time error was: " + err);
             });
@@ -191,7 +191,7 @@ var App = function (_React$Component) {
                 React.createElement(
                     "div",
                     { id: "dataWrapper" },
-                    this.state.cityData ? React.createElement(DataArea, { cityData: this.state.cityData, name: this.state.cityName, date: this.state.date }) : null
+                    this.state.cityData && this.state.date ? React.createElement(DataArea, { cityData: this.state.cityData, name: this.state.cityName, date: this.state.date }) : null
                 )
             );
         }
@@ -206,33 +206,66 @@ var DataArea = function (_React$Component2) {
     function DataArea(props) {
         _classCallCheck(this, DataArea);
 
-        return _possibleConstructorReturn(this, (DataArea.__proto__ || Object.getPrototypeOf(DataArea)).call(this, props));
+        var _this6 = _possibleConstructorReturn(this, (DataArea.__proto__ || Object.getPrototypeOf(DataArea)).call(this, props));
+
+        _this6.color = ['#008e00', '#E7E772', '#F1B97E', '#D95858', '#51255F'];
+        return _this6;
     }
 
     _createClass(DataArea, [{
         key: "render",
         value: function render() {
+            var aqi = this.props.cityData.list[0].main.aqi;
+            var splitForm = this.props.date.form.split(" ");
             return React.createElement(
                 "div",
-                { id: "dataOuter" },
+                { id: "dataOuter", style: { backgroundColor: this.color[aqi - 1] } },
                 React.createElement(
                     "div",
                     { id: "dataHeader" },
                     React.createElement(
                         "h3",
                         null,
-                        "Here in ",
-                        this.props.name,
-                        " it is ",
-                        this.props.date
+                        this.props.name
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        splitForm[1] + " " + this.props.date.abbr,
+                        " on ",
+                        splitForm[0]
                     )
                 ),
                 React.createElement(
                     "p",
                     null,
                     "AQI: ",
-                    this.props.cityData.list[0].main.aqi
+                    aqi
                 ),
+                React.createElement("img", { src: "fa-icons/fa_" + aqi + ".svg", alt: "Face representing AQI of " + aqi }),
+                React.createElement(AirData, { list: this.props.cityData.list[0].components })
+            );
+        }
+    }]);
+
+    return DataArea;
+}(React.Component);
+
+var AirData = function (_React$Component3) {
+    _inherits(AirData, _React$Component3);
+
+    function AirData(props) {
+        _classCallCheck(this, AirData);
+
+        return _possibleConstructorReturn(this, (AirData.__proto__ || Object.getPrototypeOf(AirData)).call(this, props));
+    }
+
+    _createClass(AirData, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                { id: "airData" },
                 React.createElement(
                     "p",
                     null,
@@ -242,7 +275,7 @@ var DataArea = function (_React$Component2) {
                         "CO:"
                     ),
                     " ",
-                    this.props.cityData.list[0].components.co
+                    this.props.list.co
                 ),
                 React.createElement(
                     "p",
@@ -253,7 +286,7 @@ var DataArea = function (_React$Component2) {
                         "NO:"
                     ),
                     " ",
-                    this.props.cityData.list[0].components.no
+                    this.props.list.no
                 ),
                 React.createElement(
                     "p",
@@ -270,7 +303,7 @@ var DataArea = function (_React$Component2) {
                         ":"
                     ),
                     " ",
-                    this.props.cityData.list[0].components.no2
+                    this.props.list.no2
                 ),
                 React.createElement(
                     "p",
@@ -287,7 +320,7 @@ var DataArea = function (_React$Component2) {
                         ":"
                     ),
                     " ",
-                    this.props.cityData.list[0].components.o3
+                    this.props.list.o3
                 ),
                 React.createElement(
                     "p",
@@ -304,7 +337,7 @@ var DataArea = function (_React$Component2) {
                         ":"
                     ),
                     " ",
-                    this.props.cityData.list[0].components.so2
+                    this.props.list.so2
                 ),
                 React.createElement(
                     "p",
@@ -321,7 +354,7 @@ var DataArea = function (_React$Component2) {
                         ":"
                     ),
                     " ",
-                    this.props.cityData.list[0].components.pm2_5
+                    this.props.list.pm2_5
                 ),
                 React.createElement(
                     "p",
@@ -338,7 +371,7 @@ var DataArea = function (_React$Component2) {
                         ":"
                     ),
                     " ",
-                    this.props.cityData.list[0].components.pm10
+                    this.props.list.pm10
                 ),
                 React.createElement(
                     "p",
@@ -355,17 +388,17 @@ var DataArea = function (_React$Component2) {
                         ":"
                     ),
                     " ",
-                    this.props.cityData.list[0].components.nh3
+                    this.props.list.nh3
                 )
             );
         }
     }]);
 
-    return DataArea;
+    return AirData;
 }(React.Component);
 
-var MyButton = function (_React$Component3) {
-    _inherits(MyButton, _React$Component3);
+var MyButton = function (_React$Component4) {
+    _inherits(MyButton, _React$Component4);
 
     function MyButton(props) {
         _classCallCheck(this, MyButton);
@@ -386,13 +419,13 @@ var MyButton = function (_React$Component3) {
     }, {
         key: "render",
         value: function render() {
-            var _this8 = this;
+            var _this9 = this;
 
             var loc = buttonLocation(this.props.json);
             return React.createElement(
                 "button",
                 { className: "buttonClass", onClick: function onClick() {
-                        _this8.props.onClick(_this8.props.json, loc);
+                        _this9.props.onClick(_this9.props.json, loc);
                     } },
                 this.props.json.name,
                 " ",

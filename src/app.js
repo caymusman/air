@@ -114,7 +114,7 @@ class App extends React.Component{
     getData(json){
         fetch("/api/time/" + json.lat + "/" + json.lon)
         .then(res => res.json())
-        .then(res => this.setState({date: res.formatted + res.abbreviation}))
+        .then(res => this.setState({date: {form: res.formatted, abbr: res.abbreviation}}))
         .catch(err => console.log("The client time error was: " + err));
 
 
@@ -144,7 +144,7 @@ class App extends React.Component{
                 </div>
 
                 <div id="dataWrapper">
-                    {this.state.cityData ? 
+                    {this.state.cityData && this.state.date ? 
                         <DataArea cityData={this.state.cityData} name={this.state.cityName} date={this.state.date}/>
                         : null}
                 </div>
@@ -156,36 +156,59 @@ class App extends React.Component{
 class DataArea extends React.Component{
     constructor(props){
         super(props);
+
+        this.color=['#008e00', '#E7E772', '#F1B97E', '#D95858', '#51255F'];
     }
 
     
 
     render(){
+        let aqi = this.props.cityData.list[0].main.aqi;
+        let splitForm = this.props.date.form.split(" ");
         return(
-            <div id="dataOuter">
+            <div id="dataOuter" style={{backgroundColor: this.color[aqi - 1]}}>
                 <div id="dataHeader">
-                    <h3>Here in {this.props.name} it is {this.props.date}</h3>  
+                    <h3>{this.props.name}</h3>  
+                    <p>{splitForm[1] + " " + this.props.date.abbr} on {splitForm[0]}</p>
                 </div>
-                <p>AQI: {this.props.cityData.list[0].main.aqi}</p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Carbon_monoxide">CO:</a> {this.props.cityData.list[0].components.co}</p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitric_oxide">NO:</a> {this.props.cityData.list[0].components.no}</p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitrogen_dioxide">N0<sub>2</sub>:</a> {this.props.cityData.list[0].components.no2}</p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ozone">O<sub>3</sub>:</a> {this.props.cityData.list[0].components.o3}</p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Sulfur_dioxide">SO<sub>2</sub>:</a> {this.props.cityData.list[0].components.so2}</p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates">PM<sub>2.5</sub>:</a> {this.props.cityData.list[0].components.pm2_5}</p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter">PM<sub>10</sub>:</a> {this.props.cityData.list[0].components.pm10}</p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ammonia">NH<sub>3</sub>:</a> {this.props.cityData.list[0].components.nh3}</p>
+                <p>AQI: {aqi}</p>
+                <img src={"fa-icons/fa_" + aqi + ".svg"} alt={"Face representing AQI of " + aqi}></img>
+                {/*
+                    Icons provided by FontAwesome.
+                     License: https://fontawesome.com/license
+                */}
+                <AirData list={this.props.cityData.list[0].components}/>
             </div>
         )
     }
 }
 
-class MyButton extends React.Component{
+class AirData extends React.Component{
     constructor(props){
         super(props);
     }
 
+    render(){
+        return(
+            <div id="airData">
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Carbon_monoxide">CO:</a> {this.props.list.co}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitric_oxide">NO:</a> {this.props.list.no}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitrogen_dioxide">N0<sub>2</sub>:</a> {this.props.list.no2}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ozone">O<sub>3</sub>:</a> {this.props.list.o3}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Sulfur_dioxide">SO<sub>2</sub>:</a> {this.props.list.so2}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates">PM<sub>2.5</sub>:</a> {this.props.list.pm2_5}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter">PM<sub>10</sub>:</a> {this.props.list.pm10}</p>
+                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ammonia">NH<sub>3</sub>:</a> {this.props.list.nh3}</p>
+            </div>
+        )
+    }
+}
 
+
+class MyButton extends React.Component{
+    constructor(props){
+        super(props);
+    }
 
     buttonLocation(json){
         let returnString = "";
