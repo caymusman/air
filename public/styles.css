@@ -1,6 +1,8 @@
 body {
-  background-color: #769bbf;
+  background-image: url("img/60-lines.png"), -webkit-gradient(linear, left top, left bottom, from(#82a4c5), to(#b2c7db));
+  background-image: url("img/60-lines.png"), linear-gradient(to bottom, #82a4c5, #b2c7db);
   color: #eee;
+  font-family: "Benne", serif;
 }
 
 a:focus, a:visited, a:hover {
@@ -23,6 +25,7 @@ a:focus, a:visited, a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  caret-color: #bfdfb4;
 }
 
 #main #inputButtons {
@@ -40,19 +43,20 @@ a:focus, a:visited, a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 30%;
-  height: 6%;
+  width: 15%;
+  height: 4%;
 }
 
 #main #inputButtons button {
+  font-family: "Benne", serif;
   background-color: #fff;
   width: 30%;
   height: 100%;
   border-radius: 3px;
   border: none;
   outline: none;
-  -webkit-filter: drop-shadow(2px 2px 3px gray);
-          filter: drop-shadow(2px 2px 3px gray);
+  -webkit-filter: drop-shadow(1px 1px 2px #333333);
+          filter: drop-shadow(1px 1px 2px #333333);
 }
 
 #main #inputButtons button:hover {
@@ -63,9 +67,16 @@ a:focus, a:visited, a:hover {
   background-color: #eee;
 }
 
+#main #alert {
+  min-width: 50%;
+  min-height: 4%;
+  text-align: center;
+}
+
 #main #cityButtons {
-  width: 40%;
-  height: 10%;
+  width: auto;
+  min-width: 330px;
+  height: 7%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -79,6 +90,34 @@ a:focus, a:visited, a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  border-radius: 4px;
+  padding: 5px .5% 5px .5%;
+  -webkit-filter: drop-shadow(2px 2px 3px #333333);
+          filter: drop-shadow(2px 2px 3px #333333);
+  gap: 3px;
+}
+
+#main #cityButtons .buttonClass {
+  height: 80%;
+  width: 15%;
+  min-width: 100px;
+  border-radius: 3px;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  -webkit-filter: drop-shadow(1px 1px 2px #333333);
+          filter: drop-shadow(1px 1px 2px #333333);
+  cursor: pointer;
+  font-family: "Benne", serif;
+  overflow: hidden;
+}
+
+#main #cityButtons .buttonClass :hover {
+  cursor: pointer;
+}
+
+#main #cityButtons .buttonClass:active {
+  background-color: #eee;
 }
 
 #inputDiv {
@@ -125,6 +164,7 @@ a:focus, a:visited, a:hover {
 
 #inputDiv input[type=text] {
   font-size: 20px;
+  font-family: "Benne", serif;
   border-bottom: black;
   border-style: none;
   background-color: white;
@@ -177,7 +217,7 @@ a:focus, a:visited, a:hover {
 }
 
 #dataWrapper #airData {
-  background: #777;
+  background-color: #7677bf;
   display: -ms-grid;
   display: grid;
   grid: 1fr 1fr / 1fr 1fr 1fr 1fr;
@@ -194,27 +234,6 @@ a:focus, a:visited, a:hover {
   color: #777;
   border-radius: 5px;
   border: 1px solid gray;
-}
-
-.buttonClass {
-  height: 80%;
-  width: 15%;
-  border-radius: 3px;
-  background-color: #eee;
-  overflow: auto;
-  outline: none;
-  border: none;
-  -webkit-filter: drop-shadow(2px 2px 5px gray);
-          filter: drop-shadow(2px 2px 5px gray);
-  cursor: pointer;
-}
-
-.buttonClass :hover {
-  cursor: pointer;
-}
-
-.buttonClass:active {
-  background-color: #ddd;
 }
 
 @-webkit-keyframes rollout {
@@ -241,6 +260,29 @@ a:focus, a:visited, a:hover {
             transform: translateX(0);
     opacity: 1;
   }
+}
+
+@-webkit-keyframes color-change {
+  0% {
+  }
+  100% {
+    background-color: #bfdfb4;
+  }
+}
+
+@keyframes color-change {
+  0% {
+  }
+  100% {
+    background-color: #bfdfb4;
+  }
+}
+
+.color-change {
+  -webkit-animation: color-change 1s ease-in;
+          animation: color-change 1s ease-in;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 #cityButtons button:nth-child(1) {
@@ -276,5 +318,28 @@ a:focus, a:visited, a:hover {
           animation: rollout 1s ease-in;
   -webkit-animation-delay: 0.6s;
           animation-delay: 0.6s;
+}
+
+.fade-in {
+  -webkit-animation: fade-in 1s ease-in;
+          animation: fade-in 1s ease-in;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

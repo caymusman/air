@@ -151,8 +151,8 @@ class App extends React.Component{
                     <button id="submit" onClick={this.handleInputSubmit}>Submit</button>
                     <button id="clear" onClick={this.handleClear}>Clear</button>
                 </div>
-                <p id="alert">{this.state.isAlerted ? this.state.alertText : ""}</p>
-                <div id="cityButtons">
+                <p id="alert">{this.state.isAlerted ? this.state.alertText : " "}</p>
+                <div id="cityButtons" className={this.state.renderButtons ? "color-change" : ""}>
                     {buttons}
                 </div>
 
@@ -181,7 +181,7 @@ class DataArea extends React.Component{
         let aqi = this.props.cityData.list[0].main.aqi;
         let splitForm = this.props.date.form.split(" ");
         return(
-            <div id="dataOuter">
+            <div id="dataOuter" className="fade-in">
                 <div id="dataHeader">
                     <h3>{this.props.name}</h3>  
                     <p>{splitForm[1] + " " + this.props.date.abbr} on {new Date(splitForm[0]).toUTCString().slice(0, -13)}</p>

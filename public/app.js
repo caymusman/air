@@ -204,11 +204,11 @@ var App = function (_React$Component) {
                 React.createElement(
                     "p",
                     { id: "alert" },
-                    this.state.isAlerted ? this.state.alertText : ""
+                    this.state.isAlerted ? this.state.alertText : " "
                 ),
                 React.createElement(
                     "div",
-                    { id: "cityButtons" },
+                    { id: "cityButtons", className: this.state.renderButtons ? "color-change" : "" },
                     buttons
                 ),
                 React.createElement(
@@ -246,7 +246,7 @@ var DataArea = function (_React$Component2) {
             var splitForm = this.props.date.form.split(" ");
             return React.createElement(
                 "div",
-                { id: "dataOuter" },
+                { id: "dataOuter", className: "fade-in" },
                 React.createElement(
                     "div",
                     { id: "dataHeader" },

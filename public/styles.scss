@@ -1,7 +1,13 @@
+$backColor: #82a4c5;
+$lightBack: #b2c7db;
+$cityBoxColor: #bfdfb4;
+$dataBoxColor: #7677bf;
+$font: 'Benne', serif;
+
 body{
-    background-color: #769bbf;
-    //background-image: url('img/60-lines.png');
+    background-image: url('img/60-lines.png'), linear-gradient(to bottom,$backColor, $lightBack);
     color: #eee;
+    font-family: $font;
 }
 
 a{
@@ -17,6 +23,7 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    caret-color: $cityBoxColor;
 
     #inputButtons{
         margin-top: 1.5%;
@@ -25,17 +32,18 @@ a{
         justify-content: space-evenly;
         align-items: center;
 
-        width: 30%;
-        height: 6%;
+        width: 15%;
+        height: 4%;
 
         button{
+            font-family: $font;
             background-color: #fff;
             width: 30%;
             height: 100%;
             border-radius: 3px;
             border: none;
             outline: none;
-            filter: drop-shadow(2px 2px 3px gray);
+            filter: drop-shadow(1px 1px 2px lighten(black, 20%));
             //overflow: auto;
 
             &:hover{
@@ -48,15 +56,48 @@ a{
         }
     }
 
+    #alert{
+        min-width: 50%;
+        min-height: 4%;
+        text-align: center;
+    }
+
     
     #cityButtons{
-        width: 40%;
-        height: 10%;
+        width: auto;
+        min-width: 330px;
+        height: 7%;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
+        border-radius: 4px;
+        padding: 5px .5% 5px .5%;
+        
+        filter: drop-shadow(2px 2px 3px lighten(black, 20%));
+        gap: 3px;
 
+        .buttonClass{
+            :hover{
+                cursor: pointer;
+            }
+        
+            height: 80%;
+            width: 15%;
+            min-width: 100px;
+            border-radius: 3px;
+            background-color: #fff;
+            outline: none;
+            border: none;
+            filter: drop-shadow(1px 1px 2px lighten(black, 20%));
+            cursor: pointer;
+            font-family: $font;
+            overflow: hidden;
+        
+            &:active{
+                background-color: #eee;
+            }
+        }
     }
 }
 
@@ -95,6 +136,7 @@ a{
 
     input[type=text]{
         font-size: 20px;
+        font-family: $font;
         border-bottom: black;
         border-style: none;
         background-color: white;
@@ -140,7 +182,7 @@ a{
     }
 
     #airData{
-        background: #777;
+        background-color: $dataBoxColor;
         display: grid;
         grid: 1fr 1fr / 1fr 1fr 1fr 1fr;
         gap: 0px 20px;
@@ -157,26 +199,6 @@ a{
     }
 }
 
-.buttonClass{
-    :hover{
-        cursor: pointer;
-    }
-
-    height: 80%;
-    width: 15%;
-    border-radius: 3px;
-    background-color: #eee;
-    overflow: auto;
-    outline: none;
-    border: none;
-    filter: drop-shadow(2px 2px 5px gray);
-    cursor: pointer;
-
-    &:active{
-        background-color: #ddd;
-    }
-}
-
 
 @keyframes rollout {
     0% { transform: translateX(-100px); opacity: 0;}
@@ -184,9 +206,28 @@ a{
   
 }
 
+@keyframes color-change {
+    0% {}
+    100% {background-color: $cityBoxColor;}
+}
+
+.color-change{
+    animation: color-change 1s ease-in;
+    animation-fill-mode: forwards;
+}
+
 @for $i from 0 through 4 {
     #cityButtons button:nth-child(#{$i + 1}) {
         animation: rollout 1s ease-in;
         animation-delay: #{$i * 0.15}s;
     }
+}
+
+.fade-in{
+    animation: fade-in 1s ease-in;
+}
+
+@keyframes fade-in{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
