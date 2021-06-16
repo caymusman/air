@@ -123,7 +123,7 @@ var App = function (_React$Component) {
             console.log(json);
             if (json.length == 0) {
                 this.handleClear();
-                this.alert("Input not recognized.");
+                this.alert("Sorry, we couldn't find anything for you!");
             } else if (json.length == 1) {
                 this.getData(json[0]);
                 var name = json[0].name;
@@ -181,18 +181,18 @@ var App = function (_React$Component) {
                         "div",
                         { id: "inputImgWrapper" },
                         React.createElement("div", { id: "inputImgBlank" }),
-                        React.createElement("img", { src: "fa-icons/cloud.svg" })
+                        React.createElement("img", { src: "img/cloud.svg" })
                     ),
-                    React.createElement("input", { id: "input", type: "text", onChange: this.handleInputChange, value: this.state.inputVal })
+                    React.createElement("input", { id: "input", type: "text", onChange: this.handleInputChange, value: this.state.inputVal, onKeyPress: function onKeyPress(e) {
+                            e.key == "Enter" ? _this5.handleInputSubmit() : console.log(e.key);
+                        } })
                 ),
                 React.createElement(
                     "div",
                     { id: "inputButtons" },
                     React.createElement(
                         "button",
-                        { id: "submit", onClick: this.handleInputSubmit, onKeyPress: function onKeyPress(e) {
-                                e.key == "Enter" ? _this5.handleInputSubmit() : console.log(e.key);
-                            } },
+                        { id: "submit", onClick: this.handleInputSubmit },
                         "Submit"
                     ),
                     React.createElement(
@@ -278,7 +278,7 @@ var DataArea = function (_React$Component2) {
                 React.createElement(
                     "div",
                     { id: "imgWrapper", style: { backgroundColor: this.color[aqi - 1] } },
-                    React.createElement("img", { src: "fa-icons/fa_" + aqi + ".svg", alt: "Face representing AQI of " + aqi })
+                    React.createElement("img", { src: "img/fa_" + aqi + ".svg", alt: "Face representing AQI of " + aqi })
                 ),
                 React.createElement(AirData, { list: this.props.cityData.list[0].components })
             );
@@ -440,7 +440,12 @@ var MyButton = function (_React$Component4) {
     function MyButton(props) {
         _classCallCheck(this, MyButton);
 
-        return _possibleConstructorReturn(this, (MyButton.__proto__ || Object.getPrototypeOf(MyButton)).call(this, props));
+        var _this8 = _possibleConstructorReturn(this, (MyButton.__proto__ || Object.getPrototypeOf(MyButton)).call(this, props));
+
+        _this8.state = {
+            opacity: 0
+        };
+        return _this8;
     }
 
     _createClass(MyButton, [{
@@ -454,15 +459,24 @@ var MyButton = function (_React$Component4) {
             return returnString;
         }
     }, {
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var _this9 = this;
+
+            setTimeout(function () {
+                _this9.setState({ opacity: 1 });
+            }, 750);
+        }
+    }, {
         key: "render",
         value: function render() {
-            var _this9 = this;
+            var _this10 = this;
 
             var loc = buttonLocation(this.props.json);
             return React.createElement(
                 "button",
-                { className: "buttonClass", onClick: function onClick() {
-                        _this9.props.onClick(_this9.props.json, loc);
+                { className: "buttonClass", style: { opacity: this.state.opacity }, onClick: function onClick() {
+                        _this10.props.onClick(_this10.props.json, loc);
                     } },
                 this.props.json.name,
                 " ",

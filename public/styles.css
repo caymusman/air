@@ -201,9 +201,80 @@ a:focus, a:visited, a:hover {
   width: 15%;
   border-radius: 3px;
   background-color: #eee;
+  overflow: auto;
+  outline: none;
+  border: none;
+  -webkit-filter: drop-shadow(2px 2px 5px gray);
+          filter: drop-shadow(2px 2px 5px gray);
+  cursor: pointer;
 }
 
 .buttonClass :hover {
   cursor: pointer;
+}
+
+.buttonClass:active {
+  background-color: #ddd;
+}
+
+@-webkit-keyframes rollout {
+  0% {
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes rollout {
+  0% {
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+#cityButtons button:nth-child(1) {
+  -webkit-animation: rollout 1s ease-in;
+          animation: rollout 1s ease-in;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+#cityButtons button:nth-child(2) {
+  -webkit-animation: rollout 1s ease-in;
+          animation: rollout 1s ease-in;
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+}
+
+#cityButtons button:nth-child(3) {
+  -webkit-animation: rollout 1s ease-in;
+          animation: rollout 1s ease-in;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+
+#cityButtons button:nth-child(4) {
+  -webkit-animation: rollout 1s ease-in;
+          animation: rollout 1s ease-in;
+  -webkit-animation-delay: 0.45s;
+          animation-delay: 0.45s;
+}
+
+#cityButtons button:nth-child(5) {
+  -webkit-animation: rollout 1s ease-in;
+          animation: rollout 1s ease-in;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -100,7 +100,7 @@ class App extends React.Component{
         console.log(json);
         if(json.length == 0){
             this.handleClear();
-            this.alert("Input not recognized.");
+            this.alert("Sorry, we couldn't find anything for you!");
         }
         else if(json.length == 1){
             this.getData(json[0])
@@ -143,12 +143,12 @@ class App extends React.Component{
                 <div id="inputDiv">
                     <div id="inputImgWrapper">
                         <div id="inputImgBlank"></div>
-                        <img src="fa-icons/cloud.svg"></img>
+                        <img src="img/cloud.svg"></img>
                     </div>
-                    <input id="input" type="text" onChange={this.handleInputChange} value={this.state.inputVal}/>
+                    <input id="input" type="text" onChange={this.handleInputChange} value={this.state.inputVal} onKeyPress={(e) => {e.key == "Enter" ? this.handleInputSubmit() : console.log(e.key)}}/>
                 </div>
                 <div id="inputButtons">
-                    <button id="submit" onClick={this.handleInputSubmit} onKeyPress={(e) => {e.key == "Enter" ? this.handleInputSubmit() : console.log(e.key)}}>Submit</button>
+                    <button id="submit" onClick={this.handleInputSubmit}>Submit</button>
                     <button id="clear" onClick={this.handleClear}>Clear</button>
                 </div>
                 <p id="alert">{this.state.isAlerted ? this.state.alertText : ""}</p>
@@ -189,7 +189,7 @@ class DataArea extends React.Component{
                 </div>
                 <p id="aqi">AQI: {aqi}</p>
                 <div id="imgWrapper" style={{backgroundColor: this.color[aqi - 1]}}>
-                    <img  src={"fa-icons/fa_" + aqi + ".svg"} alt={"Face representing AQI of " + aqi}></img>
+                    <img  src={"img/fa_" + aqi + ".svg"} alt={"Face representing AQI of " + aqi}></img>
                     {/*
                         Icons provided by FontAwesome.
                         License: https://fontawesome.com/license
@@ -226,6 +226,10 @@ class AirData extends React.Component{
 class MyButton extends React.Component{
     constructor(props){
         super(props);
+
+        this.state={
+            opacity: 0
+        }
     }
 
     buttonLocation(json){
@@ -237,10 +241,15 @@ class MyButton extends React.Component{
         return returnString;
     }
 
+    componentDidMount(){
+        setTimeout(() => {this.setState({opacity: 1});}, 750);
+    }
+
+     
     render(){
         let loc = buttonLocation(this.props.json)
         return(
-            <button className="buttonClass" onClick={() => {this.props.onClick(this.props.json, loc)}}>
+            <button className="buttonClass" style={{opacity: this.state.opacity}} onClick={() => {this.props.onClick(this.props.json, loc)}}>
                 {this.props.json.name} {loc}</button>
         )
     }

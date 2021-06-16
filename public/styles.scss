@@ -1,5 +1,6 @@
 body{
     background-color: #769bbf;
+    //background-image: url('img/60-lines.png');
     color: #eee;
 }
 
@@ -35,6 +36,7 @@ a{
             border: none;
             outline: none;
             filter: drop-shadow(2px 2px 3px gray);
+            //overflow: auto;
 
             &:hover{
                 cursor: pointer;
@@ -164,4 +166,27 @@ a{
     width: 15%;
     border-radius: 3px;
     background-color: #eee;
+    overflow: auto;
+    outline: none;
+    border: none;
+    filter: drop-shadow(2px 2px 5px gray);
+    cursor: pointer;
+
+    &:active{
+        background-color: #ddd;
+    }
+}
+
+
+@keyframes rollout {
+    0% { transform: translateX(-100px); opacity: 0;}
+    100% { transform: translateX(0); opacity: 1;}
+  
+}
+
+@for $i from 0 through 4 {
+    #cityButtons button:nth-child(#{$i + 1}) {
+        animation: rollout 1s ease-in;
+        animation-delay: #{$i * 0.15}s;
+    }
 }
