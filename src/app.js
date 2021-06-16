@@ -141,11 +141,14 @@ class App extends React.Component{
         return(
             <div id="main">
                 <div id="inputDiv">
-                    <img src="fa-icons/cloud.svg"></img>
+                    <div id="inputImgWrapper">
+                        <div id="inputImgBlank"></div>
+                        <img src="fa-icons/cloud.svg"></img>
+                    </div>
                     <input id="input" type="text" onChange={this.handleInputChange} value={this.state.inputVal}/>
                 </div>
                 <div id="inputButtons">
-                    <input id="submit" type="button" onClick={this.handleInputSubmit} value="Submit"></input>
+                    <button id="submit" onClick={this.handleInputSubmit} onKeyPress={(e) => {e.key == "Enter" ? this.handleInputSubmit() : console.log(e.key)}}>Submit</button>
                     <button id="clear" onClick={this.handleClear}>Clear</button>
                 </div>
                 <p id="alert">{this.state.isAlerted ? this.state.alertText : ""}</p>

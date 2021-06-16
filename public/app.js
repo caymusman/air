@@ -177,13 +177,24 @@ var App = function (_React$Component) {
                 React.createElement(
                     "div",
                     { id: "inputDiv" },
-                    React.createElement("img", { src: "fa-icons/cloud.svg" }),
+                    React.createElement(
+                        "div",
+                        { id: "inputImgWrapper" },
+                        React.createElement("div", { id: "inputImgBlank" }),
+                        React.createElement("img", { src: "fa-icons/cloud.svg" })
+                    ),
                     React.createElement("input", { id: "input", type: "text", onChange: this.handleInputChange, value: this.state.inputVal })
                 ),
                 React.createElement(
                     "div",
                     { id: "inputButtons" },
-                    React.createElement("input", { id: "submit", type: "button", onClick: this.handleInputSubmit, value: "Submit" }),
+                    React.createElement(
+                        "button",
+                        { id: "submit", onClick: this.handleInputSubmit, onKeyPress: function onKeyPress(e) {
+                                e.key == "Enter" ? _this5.handleInputSubmit() : console.log(e.key);
+                            } },
+                        "Submit"
+                    ),
                     React.createElement(
                         "button",
                         { id: "clear", onClick: this.handleClear },

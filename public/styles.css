@@ -3,6 +3,10 @@ body {
   color: #eee;
 }
 
+a:focus, a:visited, a:hover {
+  color: white;
+}
+
 #main {
   width: 100vw;
   height: 100vh;
@@ -21,7 +25,8 @@ body {
           align-items: center;
 }
 
-#main #inputbuttons {
+#main #inputButtons {
+  margin-top: 1.5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -29,12 +34,33 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 30%;
+  height: 6%;
+}
+
+#main #inputButtons button {
+  background-color: #fff;
+  width: 30%;
+  height: 100%;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  -webkit-filter: drop-shadow(2px 2px 3px gray);
+          filter: drop-shadow(2px 2px 3px gray);
+}
+
+#main #inputButtons button:hover {
+  cursor: pointer;
+}
+
+#main #inputButtons button:active {
+  background-color: #eee;
 }
 
 #main #cityButtons {
@@ -61,6 +87,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -69,11 +96,23 @@ body {
           justify-content: center;
 }
 
-#inputDiv img {
-  height: 100%;
+#inputDiv #inputImgWrapper {
   width: 10%;
+  height: 100%;
+  padding-left: 1%;
+  padding-right: 2%;
   background-color: white;
   border-radius: 3px 0px 0px 3px;
+}
+
+#inputDiv #inputImgWrapper div {
+  height: 15%;
+  width: 100%;
+}
+
+#inputDiv #inputImgWrapper img {
+  height: 85%;
+  width: 100%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -162,7 +201,6 @@ body {
   width: 15%;
   border-radius: 3px;
   background-color: #eee;
-  color: green;
 }
 
 .buttonClass :hover {
