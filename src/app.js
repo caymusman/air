@@ -66,7 +66,7 @@ class App extends React.Component{
     }
 
     handleInputSubmit(){
-        let rgx = /^([a-zA-Z\u0080-\u024F]+(?:\. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
+        let rgx = /^([a-zA-Z0-9\u0080-\u024F]+(?:\. |-| |'))*[a-zA-Z0-9\u0080-\u024F]*$/;
         let input;
         if(rgx.test(this.state.inputVal)){
             input = this.state.inputVal;
@@ -140,7 +140,10 @@ class App extends React.Component{
         }
         return(
             <div id="main">
-                <input id="input" type="text" onChange={this.handleInputChange} value={this.state.inputVal}/>
+                <div id="inputDiv">
+                    <img src="fa-icons/cloud.svg"></img>
+                    <input id="input" type="text" onChange={this.handleInputChange} value={this.state.inputVal}/>
+                </div>
                 <div id="inputButtons">
                     <input id="submit" type="button" onClick={this.handleInputSubmit} value="Submit"></input>
                     <button id="clear" onClick={this.handleClear}>Clear</button>
@@ -178,10 +181,10 @@ class DataArea extends React.Component{
             <div id="dataOuter">
                 <div id="dataHeader">
                     <h3>{this.props.name}</h3>  
-                    <p>{splitForm[1] + " " + this.props.date.abbr} on {splitForm[0]}</p>
+                    <p>{splitForm[1] + " " + this.props.date.abbr} on {new Date(splitForm[0]).toUTCString().slice(0, -13)}</p>
                     <sub>Last batched on {new Date(Number(this.props.cityData.list[0].dt + "000")).toUTCString()}</sub>
                 </div>
-                <p>AQI: {aqi}</p>
+                <p id="aqi">AQI: {aqi}</p>
                 <div id="imgWrapper" style={{backgroundColor: this.color[aqi - 1]}}>
                     <img  src={"fa-icons/fa_" + aqi + ".svg"} alt={"Face representing AQI of " + aqi}></img>
                     {/*

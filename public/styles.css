@@ -21,11 +21,6 @@ body {
           align-items: center;
 }
 
-#main #input {
-  height: 7%;
-  width: 30%;
-}
-
 #main #inputbuttons {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -58,6 +53,47 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+#inputDiv {
+  height: 7%;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#inputDiv img {
+  height: 100%;
+  width: 10%;
+  background-color: white;
+  border-radius: 3px 0px 0px 3px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#inputDiv #input {
+  height: calc(100% - 2px);
+  width: 90%;
+}
+
+#inputDiv input[type=text] {
+  font-size: 20px;
+  border-bottom: black;
+  border-style: none;
+  background-color: white;
+  border-radius: 0px 3px 3px 0px;
+}
+
+#inputDiv input[type=text]:focus {
+  outline: none;
 }
 
 #dataWrapper {

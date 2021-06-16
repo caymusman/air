@@ -89,7 +89,7 @@ var App = function (_React$Component) {
         value: function handleInputSubmit() {
             var _this3 = this;
 
-            var rgx = /^([a-zA-Z\u0080-\u024F]+(?:\. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
+            var rgx = /^([a-zA-Z0-9\u0080-\u024F]+(?:\. |-| |'))*[a-zA-Z0-9\u0080-\u024F]*$/;
             var input = void 0;
             if (rgx.test(this.state.inputVal)) {
                 input = this.state.inputVal;
@@ -174,7 +174,12 @@ var App = function (_React$Component) {
             return React.createElement(
                 "div",
                 { id: "main" },
-                React.createElement("input", { id: "input", type: "text", onChange: this.handleInputChange, value: this.state.inputVal }),
+                React.createElement(
+                    "div",
+                    { id: "inputDiv" },
+                    React.createElement("img", { src: "fa-icons/cloud.svg" }),
+                    React.createElement("input", { id: "input", type: "text", onChange: this.handleInputChange, value: this.state.inputVal })
+                ),
                 React.createElement(
                     "div",
                     { id: "inputButtons" },
@@ -244,7 +249,7 @@ var DataArea = function (_React$Component2) {
                         null,
                         splitForm[1] + " " + this.props.date.abbr,
                         " on ",
-                        splitForm[0]
+                        new Date(splitForm[0]).toUTCString().slice(0, -13)
                     ),
                     React.createElement(
                         "sub",
@@ -255,7 +260,7 @@ var DataArea = function (_React$Component2) {
                 ),
                 React.createElement(
                     "p",
-                    null,
+                    { id: "aqi" },
                     "AQI: ",
                     aqi
                 ),

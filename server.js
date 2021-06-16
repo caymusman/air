@@ -50,6 +50,6 @@ app.listen(port, () => {
 
 
 function sanitize(input){
-  let regex = /^([a-zA-Z\u0080-\u024F]+(?:\. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
+  let regex = /^([a-zA-Z0-9\u0080-\u024F]+(?:\. |-| |'))*[a-zA-Z0-9\u0080-\u024F]*$/;
   return regex.test(input) ? input : "error";
 }
