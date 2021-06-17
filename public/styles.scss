@@ -302,3 +302,68 @@ a{
 @media all and (min-width: 1500px) {  html  { font-size:.62em;  } }
 @media all and (min-width: 1600px) {  html  { font-size:.68em;  } }
 @media all and (min-width: 1700px) {  html  { font-size:.72em;  } }
+
+
+@media only screen and (orientation: portrait){
+    html{font-size: .5em}
+    
+    #inputDiv{
+        width: 70%;
+    }
+
+    #main{
+        #inputButtons{
+            margin-top: 3%;
+            width: 70%;
+        }
+    }
+    
+
+    #dataWrapper{
+        margin-top: 7%;
+        width: 90%;
+        height: 60%;
+        font-size: 1.5rem;
+    
+        #imgWrapper{
+            right: 10%;
+            top: 5.7%;
+            width: 8rem;
+            height: 8rem;
+    
+            img{
+                margin-top: -1.3px;
+                border-radius: 50%;
+            }
+    
+            #aqi{
+                margin-top: -100%;
+            }
+        }
+        
+        
+    
+        #dataOuter{
+            height: 95%;
+            width: 95%;
+    
+            h3{
+                font-size: 2.5rem;
+            }
+        }
+    
+        #airData{
+            width: 95%;
+            height: 40%;
+            gap: 20% 2%;
+            padding: 0px 10px;
+            p{
+                height: 100%;
+            }
+        }
+    
+        #batch{
+            font-size: 1.2rem;
+        }
+    }
+}

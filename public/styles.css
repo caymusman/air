@@ -529,4 +529,55 @@ a:focus, a:visited, a:hover {
     font-size: .72em;
   }
 }
+
+@media only screen and (orientation: portrait) {
+  html {
+    font-size: .5em;
+  }
+  #inputDiv {
+    width: 70%;
+  }
+  #main #inputButtons {
+    margin-top: 3%;
+    width: 70%;
+  }
+  #dataWrapper {
+    margin-top: 7%;
+    width: 90%;
+    height: 60%;
+    font-size: 1.5rem;
+  }
+  #dataWrapper #imgWrapper {
+    right: 10%;
+    top: 5.7%;
+    width: 8rem;
+    height: 8rem;
+  }
+  #dataWrapper #imgWrapper img {
+    margin-top: -1.3px;
+    border-radius: 50%;
+  }
+  #dataWrapper #imgWrapper #aqi {
+    margin-top: -100%;
+  }
+  #dataWrapper #dataOuter {
+    height: 95%;
+    width: 95%;
+  }
+  #dataWrapper #dataOuter h3 {
+    font-size: 2.5rem;
+  }
+  #dataWrapper #airData {
+    width: 95%;
+    height: 40%;
+    gap: 20% 2%;
+    padding: 0px 10px;
+  }
+  #dataWrapper #airData p {
+    height: 100%;
+  }
+  #dataWrapper #batch {
+    font-size: 1.2rem;
+  }
+}
 /*# sourceMappingURL=styles.css.map */
