@@ -103,7 +103,7 @@ var App = function (_React$Component) {
             if (input == "") {
                 this.alert("Try looking up something!");
             } else {
-                fetch("http://localhost:3000/api/geo/" + input, { headers: { 'Content-Type': 'text/html; charset=utf-8' } }).then(function (res) {
+                fetch("https://cp-air-pollution.herokuapp.com/api/geo/" + input, { headers: { 'Content-Type': 'text/html; charset=utf-8' } }).then(function (res) {
                     return res.json();
                 }).then(function (res) {
                     if (res.cod == 400) {
