@@ -120,7 +120,6 @@ var App = function (_React$Component) {
     }, {
         key: "handleLocationOptions",
         value: function handleLocationOptions(json) {
-            console.log(json);
             if (json.length == 0) {
                 this.handleClear();
                 this.alert("Sorry, we couldn't find anything for you!");
@@ -184,7 +183,7 @@ var App = function (_React$Component) {
                         React.createElement("img", { src: "img/cloud.svg" })
                     ),
                     React.createElement("input", { id: "input", type: "text", onChange: this.handleInputChange, value: this.state.inputVal, onKeyPress: function onKeyPress(e) {
-                            e.key == "Enter" ? _this5.handleInputSubmit() : console.log(e.key);
+                            e.key == "Enter" ? _this5.handleInputSubmit() : "";
                         } })
                 ),
                 React.createElement(
@@ -234,10 +233,6 @@ var DataArea = function (_React$Component2) {
         _this6.color = ['#76bf76', '#E7E772', '#F1B97E', '#D95858', '#9b76bf'];
         return _this6;
     }
-
-    //
-    //#5da35d
-
 
     _createClass(DataArea, [{
         key: "render",

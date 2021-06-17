@@ -97,7 +97,6 @@ class App extends React.Component{
     }
 
     handleLocationOptions(json){
-        console.log(json);
         if(json.length == 0){
             this.handleClear();
             this.alert("Sorry, we couldn't find anything for you!");
@@ -145,7 +144,7 @@ class App extends React.Component{
                         <div id="inputImgBlank"></div>
                         <img src="img/cloud.svg"></img>
                     </div>
-                    <input id="input" type="text" onChange={this.handleInputChange} value={this.state.inputVal} onKeyPress={(e) => {e.key == "Enter" ? this.handleInputSubmit() : console.log(e.key)}}/>
+                    <input id="input" type="text" onChange={this.handleInputChange} value={this.state.inputVal} onKeyPress={(e) => {e.key == "Enter" ? this.handleInputSubmit() : ""}}/>
                 </div>
                 <div id="inputButtons">
                     <button id="submit" onClick={this.handleInputSubmit}>Submit</button>
@@ -172,10 +171,6 @@ class DataArea extends React.Component{
 
         this.color=['#76bf76', '#E7E772', '#F1B97E', '#D95858', '#9b76bf'];
     }
-
-    //
-    //#5da35d
-    
 
     render(){
         let aqi = this.props.cityData.list[0].main.aqi;
