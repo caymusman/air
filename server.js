@@ -1,5 +1,6 @@
 var express = require("express");
 var app = express();
+const cors = require('cors')
 
 require('url').URL;
 
@@ -35,6 +36,7 @@ app.get("/api/time/:lat/:lon", (req, res) => {
 })
 
 app.use(express.static(__dirname + '/public'));
+app.use(cors());
 
 
 app.get("*", (req, res) => {
@@ -43,6 +45,8 @@ app.get("*", (req, res) => {
 })
 
 let port = process.env.PORT || 3000;
+
+
 
 app.listen(port, () => {
   console.log('Listening on port ' + port);
