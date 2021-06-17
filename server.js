@@ -15,20 +15,20 @@ app.get("/", (req, res) => {
 
 app.get("/api/geo/:input", (req, res) => {
   //required because node-fetch doesn't support Unicode fetch.
-  let url = new URL('http://api.openweathermap.org/geo/1.0/direct?q=' + sanitize(req.params.input) + '&limit=5&appid=' + myKey)
+  let url = new URL('https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/geo/1.0/direct?q=' + sanitize(req.params.input) + '&limit=5&appid=' + myKey)
   fetch(url)
   .then(response => response.json())
   .then(json => res.send(json));
 })
 
 app.get("/api/air/:lat/:lon", (req, res) => {
-  fetch('http://api.openweathermap.org/data/2.5/air_pollution?lat=' + req.params.lat + '&lon=' + req.params.lon + '&appid=' + myKey)
+  fetch('https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/air_pollution?lat=' + req.params.lat + '&lon=' + req.params.lon + '&appid=' + myKey)
   .then(response => response.json())
   .then(json => res.send(json));
 })
 
 app.get("/api/time/:lat/:lon", (req, res) => {
-  fetch('http://api.timezonedb.com/v2.1/get-time-zone?key=' + timeKey + '&format=json&by=position&lat=' + req.params.lat + "&lng= +" + req.params.lon)
+  fetch('https://cors-anywhere.herokuapp.com/http://api.timezonedb.com/v2.1/get-time-zone?key=' + timeKey + '&format=json&by=position&lat=' + req.params.lat + "&lng= +" + req.params.lon)
   .then(response => response.json())
   .then(response => res.send(response))
   .catch(err => console.log("The server time error: " + err));
