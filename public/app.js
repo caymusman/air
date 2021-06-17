@@ -208,12 +208,12 @@ var App = function (_React$Component) {
                 ),
                 React.createElement(
                     "div",
-                    { id: "cityButtons", className: this.state.renderButtons ? "color-change" : "" },
+                    { id: "cityButtons", className: this.state.renderButtons ? "light-color-change" : "" },
                     buttons
                 ),
                 React.createElement(
                     "div",
-                    { id: "dataWrapper" },
+                    { id: "dataWrapper", className: this.state.cityData && this.state.date ? "dark-color-change" : "" },
                     this.state.cityData && this.state.date ? React.createElement(DataArea, { cityData: this.state.cityData, name: this.state.cityName, date: this.state.date }) : null
                 )
             );
@@ -261,26 +261,35 @@ var DataArea = function (_React$Component2) {
                         splitForm[1] + " " + this.props.date.abbr,
                         " on ",
                         new Date(splitForm[0]).toUTCString().slice(0, -13)
-                    ),
-                    React.createElement(
-                        "sub",
-                        null,
-                        "Last batched on ",
-                        new Date(Number(this.props.cityData.list[0].dt + "000")).toUTCString()
                     )
-                ),
-                React.createElement(
-                    "p",
-                    { id: "aqi" },
-                    "AQI: ",
-                    aqi
                 ),
                 React.createElement(
                     "div",
                     { id: "imgWrapper", style: { backgroundColor: this.color[aqi - 1] } },
-                    React.createElement("img", { src: "img/fa_" + aqi + ".svg", alt: "Face representing AQI of " + aqi })
+                    React.createElement("img", { src: "img/fa_" + aqi + ".svg", alt: "Face representing AQI of " + aqi }),
+                    React.createElement(
+                        "p",
+                        { id: "aqi" },
+                        React.createElement(
+                            "a",
+                            { href: "https://en.wikipedia.org/wiki/Air_quality_index" },
+                            React.createElement(
+                                "abbr",
+                                { title: "Air Quality Index" },
+                                "AQI"
+                            )
+                        ),
+                        ": ",
+                        aqi
+                    )
                 ),
-                React.createElement(AirData, { list: this.props.cityData.list[0].components })
+                React.createElement(AirData, { list: this.props.cityData.list[0].components }),
+                React.createElement(
+                    "p",
+                    { id: "batch" },
+                    "Last batched on ",
+                    new Date(Number(this.props.cityData.list[0].dt + "000")).toUTCString()
+                )
             );
         }
     }]);
@@ -309,10 +318,25 @@ var AirData = function (_React$Component3) {
                     React.createElement(
                         "a",
                         { target: "_blank", href: "https://en.wikipedia.org/wiki/Carbon_monoxide" },
-                        "CO:"
+                        React.createElement(
+                            "abbr",
+                            { title: "Carbon monoxide" },
+                            "CO:"
+                        )
                     ),
                     " ",
-                    this.props.list.co
+                    this.props.list.co,
+                    " ",
+                    React.createElement(
+                        "abbr",
+                        { title: "Microgram per cubic meter" },
+                        "\u03BCg/m",
+                        React.createElement(
+                            "sub",
+                            null,
+                            "3"
+                        )
+                    )
                 ),
                 React.createElement(
                     "p",
@@ -320,10 +344,25 @@ var AirData = function (_React$Component3) {
                     React.createElement(
                         "a",
                         { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitric_oxide" },
-                        "NO:"
+                        React.createElement(
+                            "abbr",
+                            { title: "Nitric oxide" },
+                            "NO:"
+                        )
                     ),
                     " ",
-                    this.props.list.no
+                    this.props.list.no,
+                    " ",
+                    React.createElement(
+                        "abbr",
+                        { title: "Microgram per cubic meter" },
+                        "\u03BCg/m",
+                        React.createElement(
+                            "sub",
+                            null,
+                            "3"
+                        )
+                    )
                 ),
                 React.createElement(
                     "p",
@@ -331,16 +370,31 @@ var AirData = function (_React$Component3) {
                     React.createElement(
                         "a",
                         { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitrogen_dioxide" },
-                        "N0",
+                        React.createElement(
+                            "abbr",
+                            { title: "Nitrogen dioxide" },
+                            "NO",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "2"
+                            ),
+                            ":"
+                        )
+                    ),
+                    " ",
+                    this.props.list.no2,
+                    " ",
+                    React.createElement(
+                        "abbr",
+                        { title: "Microgram per cubic meter" },
+                        "\u03BCg/m",
                         React.createElement(
                             "sub",
                             null,
-                            "2"
-                        ),
-                        ":"
-                    ),
-                    " ",
-                    this.props.list.no2
+                            "3"
+                        )
+                    )
                 ),
                 React.createElement(
                     "p",
@@ -348,16 +402,31 @@ var AirData = function (_React$Component3) {
                     React.createElement(
                         "a",
                         { target: "_blank", href: "https://en.wikipedia.org/wiki/Ozone" },
-                        "O",
+                        React.createElement(
+                            "abbr",
+                            { title: "Ozone" },
+                            "O",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "3"
+                            ),
+                            ":"
+                        )
+                    ),
+                    " ",
+                    this.props.list.o3,
+                    " ",
+                    React.createElement(
+                        "abbr",
+                        { title: "Microgram per cubic meter" },
+                        "\u03BCg/m",
                         React.createElement(
                             "sub",
                             null,
                             "3"
-                        ),
-                        ":"
-                    ),
-                    " ",
-                    this.props.list.o3
+                        )
+                    )
                 ),
                 React.createElement(
                     "p",
@@ -365,16 +434,31 @@ var AirData = function (_React$Component3) {
                     React.createElement(
                         "a",
                         { target: "_blank", href: "https://en.wikipedia.org/wiki/Sulfur_dioxide" },
-                        "SO",
+                        React.createElement(
+                            "abbr",
+                            { title: "Sulfur Dioxide" },
+                            "SO",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "2"
+                            ),
+                            ":"
+                        )
+                    ),
+                    " ",
+                    this.props.list.so2,
+                    " ",
+                    React.createElement(
+                        "abbr",
+                        { title: "Microgram per cubic meter" },
+                        "\u03BCg/m",
                         React.createElement(
                             "sub",
                             null,
-                            "2"
-                        ),
-                        ":"
-                    ),
-                    " ",
-                    this.props.list.so2
+                            "3"
+                        )
+                    )
                 ),
                 React.createElement(
                     "p",
@@ -382,16 +466,31 @@ var AirData = function (_React$Component3) {
                     React.createElement(
                         "a",
                         { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates" },
-                        "PM",
+                        React.createElement(
+                            "abbr",
+                            { title: "Fine Particulates" },
+                            "PM",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "2.5"
+                            ),
+                            ":"
+                        )
+                    ),
+                    " ",
+                    this.props.list.pm2_5,
+                    " ",
+                    React.createElement(
+                        "abbr",
+                        { title: "Microgram per cubic meter" },
+                        "\u03BCg/m",
                         React.createElement(
                             "sub",
                             null,
-                            "2.5"
-                        ),
-                        ":"
-                    ),
-                    " ",
-                    this.props.list.pm2_5
+                            "3"
+                        )
+                    )
                 ),
                 React.createElement(
                     "p",
@@ -399,16 +498,31 @@ var AirData = function (_React$Component3) {
                     React.createElement(
                         "a",
                         { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter" },
-                        "PM",
+                        React.createElement(
+                            "abbr",
+                            { title: "Coarse Particulates" },
+                            "PM",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "10"
+                            ),
+                            ":"
+                        )
+                    ),
+                    " ",
+                    this.props.list.pm10,
+                    " ",
+                    React.createElement(
+                        "abbr",
+                        { title: "Microgram per cubic meter" },
+                        "\u03BCg/m",
                         React.createElement(
                             "sub",
                             null,
-                            "10"
-                        ),
-                        ":"
-                    ),
-                    " ",
-                    this.props.list.pm10
+                            "3"
+                        )
+                    )
                 ),
                 React.createElement(
                     "p",
@@ -416,16 +530,31 @@ var AirData = function (_React$Component3) {
                     React.createElement(
                         "a",
                         { target: "_blank", href: "https://en.wikipedia.org/wiki/Ammonia" },
-                        "NH",
+                        React.createElement(
+                            "abbr",
+                            { title: "Ammonia" },
+                            "NH",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "3"
+                            ),
+                            ":"
+                        )
+                    ),
+                    " ",
+                    this.props.list.nh3,
+                    " ",
+                    React.createElement(
+                        "abbr",
+                        { title: "Microgram per cubic meter" },
+                        "\u03BCg/m",
                         React.createElement(
                             "sub",
                             null,
                             "3"
-                        ),
-                        ":"
-                    ),
-                    " ",
-                    this.props.list.nh3
+                        )
+                    )
                 )
             );
         }
@@ -465,7 +594,7 @@ var MyButton = function (_React$Component4) {
 
             setTimeout(function () {
                 _this9.setState({ opacity: 1 });
-            }, 750);
+            }, 375);
         }
     }, {
         key: "render",

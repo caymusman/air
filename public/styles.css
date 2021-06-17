@@ -1,12 +1,17 @@
+html {
+  font-size: 62.5%;
+}
+
 body {
-  background-image: url("img/60-lines.png"), -webkit-gradient(linear, left top, left bottom, from(#82a4c5), to(#b2c7db));
-  background-image: url("img/60-lines.png"), linear-gradient(to bottom, #82a4c5, #b2c7db);
+  background-image: url("img/60-lines.png"), -webkit-gradient(linear, left top, left bottom, from(#718ac0), to(#bbc7e1));
+  background-image: url("img/60-lines.png"), linear-gradient(to bottom, #718ac0, #bbc7e1);
   color: #eee;
-  font-family: "Benne", serif;
+  font-family: "Noto Serif KR", serif;
+  font-size: 1.8rem;
 }
 
 a:focus, a:visited, a:hover {
-  color: white;
+  color: #333333;
 }
 
 #main {
@@ -25,7 +30,7 @@ a:focus, a:visited, a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  caret-color: #bfdfb4;
+  caret-color: #bbc7e1;
 }
 
 #main #inputButtons {
@@ -48,7 +53,7 @@ a:focus, a:visited, a:hover {
 }
 
 #main #inputButtons button {
-  font-family: "Benne", serif;
+  font-family: "Noto Serif KR", serif;
   background-color: #fff;
   width: 30%;
   height: 100%;
@@ -57,6 +62,7 @@ a:focus, a:visited, a:hover {
   outline: none;
   -webkit-filter: drop-shadow(1px 1px 2px #333333);
           filter: drop-shadow(1px 1px 2px #333333);
+  font-size: 1.5rem;
 }
 
 #main #inputButtons button:hover {
@@ -92,13 +98,14 @@ a:focus, a:visited, a:hover {
           align-items: center;
   border-radius: 4px;
   padding: 5px .5% 5px .5%;
-  -webkit-filter: drop-shadow(2px 2px 3px #333333);
-          filter: drop-shadow(2px 2px 3px #333333);
+  -webkit-filter: drop-shadow(1px 1px 2px #333333);
+          filter: drop-shadow(1px 1px 2px #333333);
   gap: 3px;
 }
 
 #main #cityButtons .buttonClass {
-  height: 80%;
+  font-size: 1.5rem;
+  height: 84%;
   width: 15%;
   min-width: 100px;
   border-radius: 3px;
@@ -108,7 +115,7 @@ a:focus, a:visited, a:hover {
   -webkit-filter: drop-shadow(1px 1px 2px #333333);
           filter: drop-shadow(1px 1px 2px #333333);
   cursor: pointer;
-  font-family: "Benne", serif;
+  font-family: "Noto Serif KR", serif;
   overflow: hidden;
 }
 
@@ -163,12 +170,13 @@ a:focus, a:visited, a:hover {
 }
 
 #inputDiv input[type=text] {
-  font-size: 20px;
-  font-family: "Benne", serif;
-  border-bottom: black;
+  font-size: 2.5rem;
+  font-family: "Noto Serif KR", serif;
   border-style: none;
+  border-bottom: black;
   background-color: white;
   border-radius: 0px 3px 3px 0px;
+  padding-left: 5px;
 }
 
 #inputDiv input[type=text]:focus {
@@ -176,15 +184,28 @@ a:focus, a:visited, a:hover {
 }
 
 #dataWrapper {
-  width: 80%;
+  margin-top: 2.5%;
+  width: 60%;
   height: 50%;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 5px;
+  -webkit-filter: drop-shadow(1px 1px 2px #333333);
+          filter: drop-shadow(1px 1px 2px #333333);
 }
 
 #dataWrapper #imgWrapper {
   position: absolute;
-  right: 3%;
-  top: 3%;
+  right: 20%;
+  top: 5.7%;
   width: 5vmax;
   height: 5vmax;
   border-radius: 50%;
@@ -196,6 +217,10 @@ a:focus, a:visited, a:hover {
 #dataWrapper #imgWrapper img {
   margin-top: -1.3px;
   border-radius: 50%;
+}
+
+#dataWrapper #imgWrapper #aqi {
+  margin-top: -65%;
 }
 
 #dataWrapper #dataOuter {
@@ -214,18 +239,23 @@ a:focus, a:visited, a:hover {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  border-radius: 5px;
 }
 
 #dataWrapper #airData {
-  background-color: #7677bf;
+  width: 95%;
+  height: 40%;
+  -ms-grid-row-align: center;
+      align-self: center;
+  background-color: #bbc7e1;
   display: -ms-grid;
   display: grid;
   grid: 1fr 1fr / 1fr 1fr 1fr 1fr;
   gap: 0px 20px;
   padding: 0px 10px;
   border-radius: 5px;
-  -webkit-filter: drop-shadow(2px 2px 4px #222);
-          filter: drop-shadow(2px 2px 4px #222);
+  -webkit-filter: drop-shadow(1px 1px 2px #333333);
+          filter: drop-shadow(1px 1px 2px #333333);
 }
 
 #dataWrapper #airData p {
@@ -234,6 +264,12 @@ a:focus, a:visited, a:hover {
   color: #777;
   border-radius: 5px;
   border: 1px solid gray;
+}
+
+#dataWrapper #batch {
+  font-size: 1.2rem;
+  margin: none;
+  padding: none;
 }
 
 @-webkit-keyframes rollout {
@@ -262,67 +298,90 @@ a:focus, a:visited, a:hover {
   }
 }
 
-@-webkit-keyframes color-change {
+@-webkit-keyframes dark-color-change {
   0% {
   }
   100% {
-    background-color: #bfdfb4;
+    background-color: #718ac0;
   }
 }
 
-@keyframes color-change {
+@keyframes dark-color-change {
   0% {
   }
   100% {
-    background-color: #bfdfb4;
+    background-color: #718ac0;
   }
 }
 
-.color-change {
-  -webkit-animation: color-change 1s ease-in;
-          animation: color-change 1s ease-in;
+.dark-color-change {
+  -webkit-animation: dark-color-change .5s ease-in;
+          animation: dark-color-change .5s ease-in;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes light-color-change {
+  0% {
+  }
+  100% {
+    background-color: #bbc7e1;
+  }
+}
+
+@keyframes light-color-change {
+  0% {
+  }
+  100% {
+    background-color: #bbc7e1;
+  }
+}
+
+.light-color-change {
+  -webkit-animation: light-color-change .5s ease-in;
+          animation: light-color-change .5s ease-in;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
 
 #cityButtons button:nth-child(1) {
-  -webkit-animation: rollout 1s ease-in;
-          animation: rollout 1s ease-in;
+  -webkit-animation: rollout .5s ease-in;
+          animation: rollout .5s ease-in;
   -webkit-animation-delay: 0s;
           animation-delay: 0s;
 }
 
 #cityButtons button:nth-child(2) {
-  -webkit-animation: rollout 1s ease-in;
-          animation: rollout 1s ease-in;
+  -webkit-animation: rollout .5s ease-in;
+          animation: rollout .5s ease-in;
+  -webkit-animation-delay: 0.075s;
+          animation-delay: 0.075s;
+}
+
+#cityButtons button:nth-child(3) {
+  -webkit-animation: rollout .5s ease-in;
+          animation: rollout .5s ease-in;
   -webkit-animation-delay: 0.15s;
           animation-delay: 0.15s;
 }
 
-#cityButtons button:nth-child(3) {
-  -webkit-animation: rollout 1s ease-in;
-          animation: rollout 1s ease-in;
+#cityButtons button:nth-child(4) {
+  -webkit-animation: rollout .5s ease-in;
+          animation: rollout .5s ease-in;
+  -webkit-animation-delay: 0.225s;
+          animation-delay: 0.225s;
+}
+
+#cityButtons button:nth-child(5) {
+  -webkit-animation: rollout .5s ease-in;
+          animation: rollout .5s ease-in;
   -webkit-animation-delay: 0.3s;
           animation-delay: 0.3s;
 }
 
-#cityButtons button:nth-child(4) {
-  -webkit-animation: rollout 1s ease-in;
-          animation: rollout 1s ease-in;
-  -webkit-animation-delay: 0.45s;
-          animation-delay: 0.45s;
-}
-
-#cityButtons button:nth-child(5) {
-  -webkit-animation: rollout 1s ease-in;
-          animation: rollout 1s ease-in;
-  -webkit-animation-delay: 0.6s;
-          animation-delay: 0.6s;
-}
-
 .fade-in {
-  -webkit-animation: fade-in 1s ease-in;
-          animation: fade-in 1s ease-in;
+  -webkit-animation: fade-in .5s ease-in;
+          animation: fade-in .5s ease-in;
 }
 
 @-webkit-keyframes fade-in {

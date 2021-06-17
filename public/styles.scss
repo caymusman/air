@@ -1,18 +1,25 @@
-$backColor: #82a4c5;
-$lightBack: #b2c7db;
-$cityBoxColor: #bfdfb4;
-$dataBoxColor: #7677bf;
-$font: 'Benne', serif;
+$backColor: #718ac0;
+$lightBack: #bbc7e1;
+$cityBoxColor: #4e6db0;
+$dataBoxColor: #4e6db0;
+$font: 'Noto Serif KR', serif;
+$buttonFont: 'Noto Serif KR', serif;
+$dropShadow: drop-shadow(1px 1px 2px lighten(black, 20%));
+
+html{
+    font-size: 62.5%;
+}
 
 body{
     background-image: url('img/60-lines.png'), linear-gradient(to bottom,$backColor, $lightBack);
     color: #eee;
     font-family: $font;
+    font-size: 1.8rem;
 }
 
 a{
     &:focus, &:visited, &:hover{
-        color: white;
+        color: lighten(black, 20%);
     }
 }
 
@@ -23,7 +30,7 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    caret-color: $cityBoxColor;
+    caret-color: $lightBack;
 
     #inputButtons{
         margin-top: 1.5%;
@@ -36,14 +43,15 @@ a{
         height: 4%;
 
         button{
-            font-family: $font;
+            font-family: $buttonFont;
             background-color: #fff;
             width: 30%;
             height: 100%;
             border-radius: 3px;
             border: none;
             outline: none;
-            filter: drop-shadow(1px 1px 2px lighten(black, 20%));
+            filter: $dropShadow;
+            font-size: 1.5rem;
             //overflow: auto;
 
             &:hover{
@@ -74,24 +82,25 @@ a{
         border-radius: 4px;
         padding: 5px .5% 5px .5%;
         
-        filter: drop-shadow(2px 2px 3px lighten(black, 20%));
+        filter: $dropShadow;
         gap: 3px;
 
         .buttonClass{
             :hover{
                 cursor: pointer;
             }
+            font-size: 1.5rem;
         
-            height: 80%;
+            height: 84%;
             width: 15%;
             min-width: 100px;
             border-radius: 3px;
             background-color: #fff;
             outline: none;
             border: none;
-            filter: drop-shadow(1px 1px 2px lighten(black, 20%));
+            filter: $dropShadow;
             cursor: pointer;
-            font-family: $font;
+            font-family: $buttonFont;
             overflow: hidden;
         
             &:active{
@@ -135,13 +144,13 @@ a{
     }
 
     input[type=text]{
-        font-size: 20px;
-        font-family: $font;
-        border-bottom: black;
+        font-size: 2.5rem;
+        font-family: $buttonFont;
         border-style: none;
+        border-bottom: black;
         background-color: white;
         border-radius: 0px 3px 3px 0px;
-    
+        padding-left: 5px;
         &:focus{
             outline: none;
         }
@@ -149,14 +158,20 @@ a{
 }
 
 #dataWrapper{
-    width: 80%;
+    margin-top: 2.5%;
+    width: 60%;
     height: 50%;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    filter: $dropShadow;
 
     #imgWrapper{
         position: absolute;
-        right: 3%;
-        top: 3%;
+        right: 20%;
+        top: 5.7%;
         width: 5vmax;
         height: 5vmax;
         border-radius: 50%;
@@ -167,6 +182,10 @@ a{
         img{
             margin-top: -1.3px;
             border-radius: 50%;
+        }
+
+        #aqi{
+            margin-top: -65%;
         }
     }
     
@@ -179,16 +198,20 @@ a{
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
+        border-radius: 5px;
     }
 
     #airData{
-        background-color: $dataBoxColor;
+        width: 95%;
+        height: 40%;
+        align-self: center;
+        background-color: $lightBack;
         display: grid;
         grid: 1fr 1fr / 1fr 1fr 1fr 1fr;
         gap: 0px 20px;
         padding: 0px 10px;
         border-radius: 5px;
-        filter: drop-shadow(2px 2px 4px #222);
+        filter: $dropShadow;
         p{
             background-color: #eee;
             padding: 5px;
@@ -196,6 +219,12 @@ a{
             border-radius: 5px;
             border: 1px solid gray;
         }
+    }
+
+    #batch{
+        font-size: 1.2rem;
+        margin: none;
+        padding: none;;
     }
 }
 
@@ -206,25 +235,35 @@ a{
   
 }
 
-@keyframes color-change {
+@keyframes dark-color-change {
     0% {}
-    100% {background-color: $cityBoxColor;}
+    100% {background-color: $backColor;}
 }
 
-.color-change{
-    animation: color-change 1s ease-in;
+.dark-color-change{
+    animation: dark-color-change .5s ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes light-color-change {
+    0% {}
+    100% {background-color: $lightBack;}
+}
+
+.light-color-change{
+    animation: light-color-change .5s ease-in;
     animation-fill-mode: forwards;
 }
 
 @for $i from 0 through 4 {
     #cityButtons button:nth-child(#{$i + 1}) {
-        animation: rollout 1s ease-in;
-        animation-delay: #{$i * 0.15}s;
+        animation: rollout .5s ease-in;
+        animation-delay: #{$i * 0.075}s;
     }
 }
 
 .fade-in{
-    animation: fade-in 1s ease-in;
+    animation: fade-in .5s ease-in;
 }
 
 @keyframes fade-in{
