@@ -1,5 +1,5 @@
 html {
-  font-size: 62.5%;
+  font-size: 50%;
 }
 
 body {
@@ -200,17 +200,18 @@ a:focus, a:visited, a:hover {
   border-radius: 5px;
   -webkit-filter: drop-shadow(1px 1px 2px #333333);
           filter: drop-shadow(1px 1px 2px #333333);
+  font-size: 2rem;
 }
 
 #dataWrapper #imgWrapper {
   position: absolute;
   right: 20%;
   top: 5.7%;
-  width: 5vmax;
-  height: 5vmax;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
   text-align: center;
-  line-height: 5vmax;
+  line-height: 10rem;
   vertical-align: middle;
 }
 
@@ -242,6 +243,10 @@ a:focus, a:visited, a:hover {
   border-radius: 5px;
 }
 
+#dataWrapper #dataOuter h3 {
+  font-size: 2.5rem;
+}
+
 #dataWrapper #airData {
   width: 95%;
   height: 40%;
@@ -250,20 +255,29 @@ a:focus, a:visited, a:hover {
   background-color: #bbc7e1;
   display: -ms-grid;
   display: grid;
-  grid: 1fr 1fr / 1fr 1fr 1fr 1fr;
-  gap: 0px 20px;
+  grid: 25% 25% / 23% 23% 23% 23%;
+  gap: 20% 2%;
   padding: 0px 10px;
   border-radius: 5px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-filter: drop-shadow(1px 1px 2px #333333);
           filter: drop-shadow(1px 1px 2px #333333);
 }
 
 #dataWrapper #airData p {
+  height: 100%;
   background-color: #eee;
-  padding: 5px;
   color: #777;
   border-radius: 5px;
-  border: 1px solid gray;
+  text-align: center;
+  -webkit-filter: drop-shadow(1px 1px 2px #333333);
+          filter: drop-shadow(1px 1px 2px #333333);
+}
+
+#dataWrapper #airData p span {
+  vertical-align: middle;
 }
 
 #dataWrapper #batch {

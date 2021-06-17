@@ -7,7 +7,7 @@ $buttonFont: 'Noto Serif KR', serif;
 $dropShadow: drop-shadow(1px 1px 2px lighten(black, 20%));
 
 html{
-    font-size: 62.5%;
+    font-size: 50%;
 }
 
 body{
@@ -167,16 +167,17 @@ a{
     justify-content: center;
     border-radius: 5px;
     filter: $dropShadow;
+    font-size: 2rem;
 
     #imgWrapper{
         position: absolute;
         right: 20%;
         top: 5.7%;
-        width: 5vmax;
-        height: 5vmax;
+        width: 10rem;
+        height: 10rem;
         border-radius: 50%;
         text-align: center;
-        line-height: 5vmax;
+        line-height: 10rem;
         vertical-align: middle;
 
         img{
@@ -199,6 +200,10 @@ a{
         align-items: center;
         justify-content: space-evenly;
         border-radius: 5px;
+
+        h3{
+            font-size: 2.5rem;
+        }
     }
 
     #airData{
@@ -207,17 +212,23 @@ a{
         align-self: center;
         background-color: $lightBack;
         display: grid;
-        grid: 1fr 1fr / 1fr 1fr 1fr 1fr;
-        gap: 0px 20px;
+        grid: 25% 25% / 23% 23% 23% 23%;
+        gap: 20% 2%;
         padding: 0px 10px;
         border-radius: 5px;
+        justify-content: center;
         filter: $dropShadow;
         p{
+            height: 100%;
             background-color: #eee;
-            padding: 5px;
             color: #777;
             border-radius: 5px;
-            border: 1px solid gray;
+            text-align: center;
+            filter: $dropShadow;
+            
+            span{
+                vertical-align: middle;
+            }
         }
     }
 

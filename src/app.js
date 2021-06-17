@@ -192,7 +192,7 @@ class DataArea extends React.Component{
                         Icons provided by FontAwesome.
                         License: https://fontawesome.com/license
                      */}
-                     <p id="aqi"><a href="https://en.wikipedia.org/wiki/Air_quality_index"><abbr title="Air Quality Index">AQI</abbr></a>: {aqi}</p>
+                     <p id="aqi"><a target='_blank' href="https://en.wikipedia.org/wiki/Air_quality_index"><abbr title="Air Quality Index">AQI</abbr></a>: {aqi}</p>
                 </div>
                 <AirData list={this.props.cityData.list[0].components}/>
                 <p id="batch">Last batched on {new Date(Number(this.props.cityData.list[0].dt + "000")).toUTCString()}</p>
@@ -209,14 +209,14 @@ class AirData extends React.Component{
     render(){
         return(
             <div id="airData">
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Carbon_monoxide"><abbr title="Carbon monoxide">CO:</abbr></a> {this.props.list.co} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitric_oxide"><abbr title="Nitric oxide">NO:</abbr></a> {this.props.list.no} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Nitrogen_dioxide"><abbr title="Nitrogen dioxide">NO<sub>2</sub>:</abbr></a> {this.props.list.no2} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ozone"><abbr title="Ozone">O<sub>3</sub>:</abbr></a> {this.props.list.o3} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Sulfur_dioxide"><abbr title="Sulfur Dioxide">SO<sub>2</sub>:</abbr></a> {this.props.list.so2} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates"><abbr title="Fine Particulates">PM<sub>2.5</sub>:</abbr></a> {this.props.list.pm2_5} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter"><abbr title="Coarse Particulates">PM<sub>10</sub>:</abbr></a> {this.props.list.pm10} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></p>
-                <p><a target="_blank" href="https://en.wikipedia.org/wiki/Ammonia"><abbr title="Ammonia">NH<sub>3</sub>:</abbr></a> {this.props.list.nh3} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></p>
+                <p><span><a target="_blank" href="https://en.wikipedia.org/wiki/Carbon_monoxide"><abbr title="Carbon monoxide">CO:</abbr></a> {this.props.list.co} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></span></p>
+                <p><span><a target="_blank" href="https://en.wikipedia.org/wiki/Nitric_oxide"><abbr title="Nitric oxide">NO:</abbr></a> {this.props.list.no} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></span></p>
+                <p><span><a target="_blank" href="https://en.wikipedia.org/wiki/Nitrogen_dioxide"><abbr title="Nitrogen dioxide">NO<sub>2</sub>:</abbr></a> {this.props.list.no2} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></span></p>
+                <p><span><a target="_blank" href="https://en.wikipedia.org/wiki/Ozone"><abbr title="Ozone">O<sub>3</sub>:</abbr></a> {this.props.list.o3} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></span></p>
+                <p><span><a target="_blank" href="https://en.wikipedia.org/wiki/Sulfur_dioxide"><abbr title="Sulfur Dioxide">SO<sub>2</sub>:</abbr></a> {this.props.list.so2} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></span></p>
+                <p><span><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates"><abbr title="Fine Particulates">PM<sub>2.5</sub>:</abbr></a> {this.props.list.pm2_5} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></span></p>
+                <p><span><a target="_blank" href="https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter"><abbr title="Coarse Particulates">PM<sub>10</sub>:</abbr></a> {this.props.list.pm10} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></span></p>
+                <p><span><a target="_blank" href="https://en.wikipedia.org/wiki/Ammonia"><abbr title="Ammonia">NH<sub>3</sub>:</abbr></a> {this.props.list.nh3} <abbr title="Microgram per cubic meter">μg/m<sub>3</sub></abbr></span></p>
             </div>
         )
     }

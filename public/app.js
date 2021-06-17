@@ -272,7 +272,7 @@ var DataArea = function (_React$Component2) {
                         { id: "aqi" },
                         React.createElement(
                             "a",
-                            { href: "https://en.wikipedia.org/wiki/Air_quality_index" },
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Air_quality_index" },
                             React.createElement(
                                 "abbr",
                                 { title: "Air Quality Index" },
@@ -316,115 +316,29 @@ var AirData = function (_React$Component3) {
                     "p",
                     null,
                     React.createElement(
-                        "a",
-                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Carbon_monoxide" },
+                        "span",
+                        null,
                         React.createElement(
-                            "abbr",
-                            { title: "Carbon monoxide" },
-                            "CO:"
-                        )
-                    ),
-                    " ",
-                    this.props.list.co,
-                    " ",
-                    React.createElement(
-                        "abbr",
-                        { title: "Microgram per cubic meter" },
-                        "\u03BCg/m",
-                        React.createElement(
-                            "sub",
-                            null,
-                            "3"
-                        )
-                    )
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    React.createElement(
-                        "a",
-                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitric_oxide" },
-                        React.createElement(
-                            "abbr",
-                            { title: "Nitric oxide" },
-                            "NO:"
-                        )
-                    ),
-                    " ",
-                    this.props.list.no,
-                    " ",
-                    React.createElement(
-                        "abbr",
-                        { title: "Microgram per cubic meter" },
-                        "\u03BCg/m",
-                        React.createElement(
-                            "sub",
-                            null,
-                            "3"
-                        )
-                    )
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    React.createElement(
-                        "a",
-                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitrogen_dioxide" },
-                        React.createElement(
-                            "abbr",
-                            { title: "Nitrogen dioxide" },
-                            "NO",
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Carbon_monoxide" },
                             React.createElement(
-                                "sub",
-                                null,
-                                "2"
-                            ),
-                            ":"
-                        )
-                    ),
-                    " ",
-                    this.props.list.no2,
-                    " ",
-                    React.createElement(
-                        "abbr",
-                        { title: "Microgram per cubic meter" },
-                        "\u03BCg/m",
-                        React.createElement(
-                            "sub",
-                            null,
-                            "3"
-                        )
-                    )
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    React.createElement(
-                        "a",
-                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Ozone" },
+                                "abbr",
+                                { title: "Carbon monoxide" },
+                                "CO:"
+                            )
+                        ),
+                        " ",
+                        this.props.list.co,
+                        " ",
                         React.createElement(
                             "abbr",
-                            { title: "Ozone" },
-                            "O",
+                            { title: "Microgram per cubic meter" },
+                            "\u03BCg/m",
                             React.createElement(
                                 "sub",
                                 null,
                                 "3"
-                            ),
-                            ":"
-                        )
-                    ),
-                    " ",
-                    this.props.list.o3,
-                    " ",
-                    React.createElement(
-                        "abbr",
-                        { title: "Microgram per cubic meter" },
-                        "\u03BCg/m",
-                        React.createElement(
-                            "sub",
-                            null,
-                            "3"
+                            )
                         )
                     )
                 ),
@@ -432,127 +346,245 @@ var AirData = function (_React$Component3) {
                     "p",
                     null,
                     React.createElement(
-                        "a",
-                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Sulfur_dioxide" },
+                        "span",
+                        null,
                         React.createElement(
-                            "abbr",
-                            { title: "Sulfur Dioxide" },
-                            "SO",
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitric_oxide" },
                             React.createElement(
-                                "sub",
-                                null,
-                                "2"
-                            ),
-                            ":"
-                        )
-                    ),
-                    " ",
-                    this.props.list.so2,
-                    " ",
-                    React.createElement(
-                        "abbr",
-                        { title: "Microgram per cubic meter" },
-                        "\u03BCg/m",
-                        React.createElement(
-                            "sub",
-                            null,
-                            "3"
-                        )
-                    )
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    React.createElement(
-                        "a",
-                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates" },
+                                "abbr",
+                                { title: "Nitric oxide" },
+                                "NO:"
+                            )
+                        ),
+                        " ",
+                        this.props.list.no,
+                        " ",
                         React.createElement(
                             "abbr",
-                            { title: "Fine Particulates" },
-                            "PM",
-                            React.createElement(
-                                "sub",
-                                null,
-                                "2.5"
-                            ),
-                            ":"
-                        )
-                    ),
-                    " ",
-                    this.props.list.pm2_5,
-                    " ",
-                    React.createElement(
-                        "abbr",
-                        { title: "Microgram per cubic meter" },
-                        "\u03BCg/m",
-                        React.createElement(
-                            "sub",
-                            null,
-                            "3"
-                        )
-                    )
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    React.createElement(
-                        "a",
-                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter" },
-                        React.createElement(
-                            "abbr",
-                            { title: "Coarse Particulates" },
-                            "PM",
-                            React.createElement(
-                                "sub",
-                                null,
-                                "10"
-                            ),
-                            ":"
-                        )
-                    ),
-                    " ",
-                    this.props.list.pm10,
-                    " ",
-                    React.createElement(
-                        "abbr",
-                        { title: "Microgram per cubic meter" },
-                        "\u03BCg/m",
-                        React.createElement(
-                            "sub",
-                            null,
-                            "3"
-                        )
-                    )
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    React.createElement(
-                        "a",
-                        { target: "_blank", href: "https://en.wikipedia.org/wiki/Ammonia" },
-                        React.createElement(
-                            "abbr",
-                            { title: "Ammonia" },
-                            "NH",
+                            { title: "Microgram per cubic meter" },
+                            "\u03BCg/m",
                             React.createElement(
                                 "sub",
                                 null,
                                 "3"
-                            ),
-                            ":"
+                            )
                         )
-                    ),
-                    " ",
-                    this.props.list.nh3,
-                    " ",
+                    )
+                ),
+                React.createElement(
+                    "p",
+                    null,
                     React.createElement(
-                        "abbr",
-                        { title: "Microgram per cubic meter" },
-                        "\u03BCg/m",
+                        "span",
+                        null,
                         React.createElement(
-                            "sub",
-                            null,
-                            "3"
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Nitrogen_dioxide" },
+                            React.createElement(
+                                "abbr",
+                                { title: "Nitrogen dioxide" },
+                                "NO",
+                                React.createElement(
+                                    "sub",
+                                    null,
+                                    "2"
+                                ),
+                                ":"
+                            )
+                        ),
+                        " ",
+                        this.props.list.no2,
+                        " ",
+                        React.createElement(
+                            "abbr",
+                            { title: "Microgram per cubic meter" },
+                            "\u03BCg/m",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "3"
+                            )
+                        )
+                    )
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "span",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Ozone" },
+                            React.createElement(
+                                "abbr",
+                                { title: "Ozone" },
+                                "O",
+                                React.createElement(
+                                    "sub",
+                                    null,
+                                    "3"
+                                ),
+                                ":"
+                            )
+                        ),
+                        " ",
+                        this.props.list.o3,
+                        " ",
+                        React.createElement(
+                            "abbr",
+                            { title: "Microgram per cubic meter" },
+                            "\u03BCg/m",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "3"
+                            )
+                        )
+                    )
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "span",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Sulfur_dioxide" },
+                            React.createElement(
+                                "abbr",
+                                { title: "Sulfur Dioxide" },
+                                "SO",
+                                React.createElement(
+                                    "sub",
+                                    null,
+                                    "2"
+                                ),
+                                ":"
+                            )
+                        ),
+                        " ",
+                        this.props.list.so2,
+                        " ",
+                        React.createElement(
+                            "abbr",
+                            { title: "Microgram per cubic meter" },
+                            "\u03BCg/m",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "3"
+                            )
+                        )
+                    )
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "span",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates" },
+                            React.createElement(
+                                "abbr",
+                                { title: "Fine Particulates" },
+                                "PM",
+                                React.createElement(
+                                    "sub",
+                                    null,
+                                    "2.5"
+                                ),
+                                ":"
+                            )
+                        ),
+                        " ",
+                        this.props.list.pm2_5,
+                        " ",
+                        React.createElement(
+                            "abbr",
+                            { title: "Microgram per cubic meter" },
+                            "\u03BCg/m",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "3"
+                            )
+                        )
+                    )
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "span",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Particulates#Size,_shape_and_solubility_matter" },
+                            React.createElement(
+                                "abbr",
+                                { title: "Coarse Particulates" },
+                                "PM",
+                                React.createElement(
+                                    "sub",
+                                    null,
+                                    "10"
+                                ),
+                                ":"
+                            )
+                        ),
+                        " ",
+                        this.props.list.pm10,
+                        " ",
+                        React.createElement(
+                            "abbr",
+                            { title: "Microgram per cubic meter" },
+                            "\u03BCg/m",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "3"
+                            )
+                        )
+                    )
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement(
+                        "span",
+                        null,
+                        React.createElement(
+                            "a",
+                            { target: "_blank", href: "https://en.wikipedia.org/wiki/Ammonia" },
+                            React.createElement(
+                                "abbr",
+                                { title: "Ammonia" },
+                                "NH",
+                                React.createElement(
+                                    "sub",
+                                    null,
+                                    "3"
+                                ),
+                                ":"
+                            )
+                        ),
+                        " ",
+                        this.props.list.nh3,
+                        " ",
+                        React.createElement(
+                            "abbr",
+                            { title: "Microgram per cubic meter" },
+                            "\u03BCg/m",
+                            React.createElement(
+                                "sub",
+                                null,
+                                "3"
+                            )
                         )
                     )
                 )
