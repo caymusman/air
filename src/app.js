@@ -80,7 +80,7 @@ class App extends React.Component{
         if(input == ""){
             this.alert("Try looking up something!");
         }else{
-            fetch("http://localhost:3000/api/geo/" + input, {headers: {'Content-Type': 'text/html; charset=utf-8'}})
+            fetch("/api/geo/" + input, {headers: {'Content-Type': 'text/html; charset=utf-8'}})
             .then(res => res.json())
             .then(res => {
                 if(res.cod == 400){
