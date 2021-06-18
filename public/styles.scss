@@ -18,6 +18,7 @@ body{
 }
 
 a{
+    color: lighten(black, 20%);
     &:focus, &:visited, &:hover{
         color: lighten(black, 20%);
     }

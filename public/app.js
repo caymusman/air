@@ -42,6 +42,9 @@ var App = function (_React$Component) {
         return _this;
     }
 
+    //alert area for errors on inputs
+
+
     _createClass(App, [{
         key: "alert",
         value: function alert(msg) {
@@ -58,6 +61,9 @@ var App = function (_React$Component) {
                 });
             }, 2000);
         }
+
+        //reset state
+
     }, {
         key: "handleClear",
         value: function handleClear() {
@@ -103,10 +109,12 @@ var App = function (_React$Component) {
             if (input == "") {
                 this.alert("Try looking up something!");
             } else {
+                //fetch from backend which calls API. Change here if url changes.
                 fetch("https://cp-air-pollution.herokuapp.com/api/geo/" + input, { headers: { 'Content-Type': 'text/html; charset=utf-8' } }).then(function (res) {
                     return res.json();
                 }).then(function (res) {
                     if (res.cod == 400) {
+                        //handle bad url call - ex. "test"
                         _this3.handleClear();
                         _this3.alert("Sorry, that value is not available!");
                     } else {
@@ -121,9 +129,11 @@ var App = function (_React$Component) {
         key: "handleLocationOptions",
         value: function handleLocationOptions(json) {
             if (json.length == 0) {
+                //case: nothing with that name
                 this.handleClear();
                 this.alert("Sorry, we couldn't find anything for you!");
             } else if (json.length == 1) {
+                //case: only one place with that name
                 this.getData(json[0]);
                 var name = json[0].name;
                 json[0].hasOwnProperty("state") ? name += " " + json[0].state + ", " : name += " ";
@@ -132,6 +142,7 @@ var App = function (_React$Component) {
                     cityName: name
                 });
             } else {
+                //case: multiple places with that name
                 this.setState({
                     renderButtons: true,
                     citiesJSON: json
@@ -143,7 +154,8 @@ var App = function (_React$Component) {
         value: function getData(json) {
             var _this4 = this;
 
-            fetch("/api/time/" + json.lat + "/" + json.lon).then(function (res) {
+            fetch("/api/time/" + json.lat + "/" + json.lon) //get local date and time
+            .then(function (res) {
                 return res.json();
             }).then(function (res) {
                 return _this4.setState({ date: { form: res.formatted, abbr: res.abbreviation } });
@@ -151,7 +163,8 @@ var App = function (_React$Component) {
                 return console.log("The client time error was: " + err);
             });
 
-            fetch("/api/air/" + json.lat + "/" + json.lon).then(function (res) {
+            fetch("/api/air/" + json.lat + "/" + json.lon) //get pollution data
+            .then(function (res) {
                 return res.json();
             }).then(function (res) {
                 return _this4.setState({ cityData: res });
@@ -213,7 +226,8 @@ var App = function (_React$Component) {
                 React.createElement(
                     "div",
                     { id: "dataWrapper", className: this.state.cityData && this.state.date ? "dark-color-change" : "" },
-                    this.state.cityData && this.state.date ? React.createElement(DataArea, { cityData: this.state.cityData, name: this.state.cityName, date: this.state.date }) : null
+                    this.state.cityData && this.state.date ? //conditionally render DataArea if the info is ready
+                    React.createElement(DataArea, { cityData: this.state.cityData, name: this.state.cityName, date: this.state.date }) : null
                 )
             );
         }

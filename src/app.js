@@ -29,6 +29,7 @@ class App extends React.Component{
         this.alert=this.alert.bind(this);
     }
 
+    //alert area for errors on inputs
     alert(msg){
         this.setState({
             isAlerted: true,
@@ -42,6 +43,7 @@ class App extends React.Component{
         }, 2000);
     }
 
+    //reset state
     handleClear(){
         this.setState({
             cityData: null,
@@ -79,11 +81,11 @@ class App extends React.Component{
 
         if(input == ""){
             this.alert("Try looking up something!");
-        }else{
+        }else{ //fetch from backend which calls API. Change here if url changes.
             fetch("https://cp-air-pollution.herokuapp.com/api/geo/" + input, {headers: {'Content-Type': 'text/html; charset=utf-8'}})
             .then(res => res.json())
             .then(res => {
-                if(res.cod == 400){
+                if(res.cod == 400){ //handle bad url call - ex. "test"
                     this.handleClear();
                     this.alert("Sorry, that value is not available!");
                 }else{
@@ -97,11 +99,11 @@ class App extends React.Component{
     }
 
     handleLocationOptions(json){
-        if(json.length == 0){
+        if(json.length == 0){ //case: nothing with that name
             this.handleClear();
             this.alert("Sorry, we couldn't find anything for you!");
         }
-        else if(json.length == 1){
+        else if(json.length == 1){ //case: only one place with that name
             this.getData(json[0])
             let name = json[0].name;
             json[0].hasOwnProperty("state") ? name += " " + json[0].state + ", " : name += " ";
@@ -109,7 +111,7 @@ class App extends React.Component{
             this.setState({
                 cityName: name
             })
-        }else{
+        }else{ //case: multiple places with that name
             this.setState({
                 renderButtons: true,
                 citiesJSON: json
@@ -118,13 +120,13 @@ class App extends React.Component{
     }
 
     getData(json){
-        fetch("/api/time/" + json.lat + "/" + json.lon)
+        fetch("/api/time/" + json.lat + "/" + json.lon) //get local date and time
         .then(res => res.json())
         .then(res => this.setState({date: {form: res.formatted, abbr: res.abbreviation}}))
         .catch(err => console.log("The client time error was: " + err));
 
 
-        fetch("/api/air/" + json.lat + "/" + json.lon)
+        fetch("/api/air/" + json.lat + "/" + json.lon) //get pollution data
         .then(res => res.json())
         .then(res => this.setState({cityData: res}))
         .catch(err => console.log("This is the data error: " + err));
@@ -156,7 +158,7 @@ class App extends React.Component{
                 </div>
 
                 <div id="dataWrapper" className={this.state.cityData && this.state.date ? "dark-color-change" : ""}>
-                    {this.state.cityData && this.state.date ? 
+                    {this.state.cityData && this.state.date ? //conditionally render DataArea if the info is ready
                         <DataArea cityData={this.state.cityData} name={this.state.cityName} date={this.state.date}/>
                         : null}
                 </div>
@@ -179,7 +181,7 @@ class DataArea extends React.Component{
             <div id="dataOuter" className="fade-in">
                 <div id="dataHeader">
                     <h3>{this.props.name}</h3>  
-                    <p>{splitForm[1] + " " + this.props.date.abbr} on {new Date(splitForm[0]).toUTCString().slice(0, -13)}</p>
+                    <p>{splitForm[1] + " " + this.props.date.abbr} on {new Date(splitForm[0]).toUTCString().slice(0, -13)}</p> 
                 </div>
                 <div id="imgWrapper" style={{backgroundColor: this.color[aqi - 1]}}>
                     <img  src={"img/fa_" + aqi + ".svg"} alt={"Face representing AQI of " + aqi}></img>
