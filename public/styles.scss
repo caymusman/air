@@ -126,6 +126,7 @@ a{
         padding-right: 2%;
         background-color: white;
         border-radius: 3px 0px 0px 3px;
+        padding: 0px;
 
         div{
             height: 15%;
@@ -140,7 +141,7 @@ a{
     }
 
     #input{
-        height: calc(100% - 2px);
+        height: 100%;
         width: 90%;
     }
 
@@ -151,6 +152,7 @@ a{
         border-bottom: black;
         background-color: white;
         border-radius: 0px 3px 3px 0px;
+        padding: 0px;
         padding-left: 5px;
         &:focus{
             outline: none;
