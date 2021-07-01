@@ -192,7 +192,11 @@ var App = function (_React$Component) {
                     React.createElement(
                         "div",
                         { id: "inputImgWrapper" },
-                        React.createElement("div", { id: "inputImgBlank" }),
+                        React.createElement(
+                            "div",
+                            { id: "inputImgBlank" },
+                            String.fromCharCode(160)
+                        ),
                         React.createElement("img", { src: "img/cloud.svg" })
                     ),
                     React.createElement("input", { id: "input", type: "text", onChange: this.handleInputChange, value: this.state.inputVal, onKeyPress: function onKeyPress(e) {

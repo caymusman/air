@@ -143,7 +143,7 @@ class App extends React.Component{
             <div id="main">
                 <div id="inputDiv">
                     <div id="inputImgWrapper">
-                        <div id="inputImgBlank"></div>
+                        <div id="inputImgBlank">{String.fromCharCode(160)}</div>
                         <img src="img/cloud.svg"></img>
                     </div>
                     <input id="input" type="text" onChange={this.handleInputChange} value={this.state.inputVal} onKeyPress={(e) => {e.key == "Enter" ? this.handleInputSubmit() : ""}}/>
